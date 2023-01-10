@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "colors": "^1.4.0",
+    "uuid": "^9.0.0"
+  },
+  "name": "restaurant",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon -i '*.json' main.js",
+    "start": "node main.js"
+  },
+  "author": "Ahmet Zorlutuna <ahmettayyip3439@gmail.com>",
+  "license": "ISC",
+  "description": ""
+}
