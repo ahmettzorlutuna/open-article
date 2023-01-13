@@ -1,27 +1,27 @@
-const Customer = require('./customer')
-const Waiter = require('./waiter')
-const {customerDatabase, waiterDatabase}  = require('./database');
+const User = require('./user')
+const {userDatabase, waiterDatabase}  = require('./database');
+const { findBy, findByName } = require('./database/user_database');
+const { america } = require('colors');
 
-function printOrder(order){
-    console.log(`${order.table}'s order name is ${order.name} and price ${order.price}`)
+function printAllPosts(user){
+    if(user.posts.length == 0){
+        console.log(`${user.username}'s is no posts yet`)
+    }
+    user.posts.forEach(printPost)
 }
 
-function printCustomerOrders(customer){
-    customer.orders.forEach(printOrder);
+function printPost(post){
+    console.log(`${post.content} and comment is ${post.comment}`)
 }
 
 
-const ahmet = new Customer("Ahmet","Table1")
-const curry = new Customer("Curry","Table2")
-const order1 = ahmet.order("Pizza","FastFood",150)
-const order2 = ahmet.order("Hamburger","FastFood",70)
-const order3 = ahmet.order("Espresso","Coffee",34)
-//const order4 = ahmet.order("TurkishCoffee","Coffee",15)
-const order5 = curry.order("Latte","Coffee",25)
+const ahmet = new User("Ahmet")
+const mehmet = new User("Mehmet")
 
+ahmet.createPost("Deneme Makalesi","Çok güzel")
+mehmet.createPost("Deneme makalesi 2","Berbat")
 
+ahmet.follow(mehmet)
+mehmet.follow(ahmet)
 
-const Ahmet = customerDatabase.findBy("name","Ahmet")
-console.log(Ahmet)
-
-
+userDatabase.update({ahmet,mehmet})
