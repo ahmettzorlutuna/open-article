@@ -1,6 +1,6 @@
 const Post = require('./post')
 const uuid = require('uuid')
-const { userDatabase } = require('./database')
+
 
 class User{
     constructor(username, posts = [], following = [], followers = [], id = uuid.v4()){
@@ -15,6 +15,10 @@ class User{
         const post = new Post(content,comment)
         this.posts.push(post)
         return post
+    }
+    follow(user){
+        this.following.push(user.username)
+        user.followers.push(this.username)
     }
     static create({username,posts,following,followers,id}){
         return new User(username,posts,following,followers,id)
