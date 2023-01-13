@@ -1,4 +1,5 @@
 const fs = require('fs')
+const flatted = require('flatted') 
 
 class BaseDatabase{
     constructor(model){
@@ -11,7 +12,7 @@ class BaseDatabase{
     }
     load(){
         const data = JSON.parse(fs.readFileSync(`./${this.filename}.json`, 'utf-8'))
-        return data
+        return data.map(this.model.create)
     }
     insert(object){
         const objects = this.load()
@@ -31,6 +32,10 @@ class BaseDatabase{
         const index = objects.findIndex(o => o.id == object.id)
         objects.splice(index, 1, object)
         this.save(objects)
+    }
+    findByName(name){
+        const data = this.load()
+        return data.find(o => o.name == name)
     }
 }
 
