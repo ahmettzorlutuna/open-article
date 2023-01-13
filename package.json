@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "colors": "^1.4.0",
+    "flatted": "^3.2.7",
     "uuid": "^9.0.0"
   },
   "name": "restaurant",
