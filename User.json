@@ -1,16 +1,38 @@
 [
   {
-    "username": "Ahmet",
-    "posts": [],
-    "following": [],
-    "followers": [],
-    "id": "6d2e9fad-5de9-4068-9467-6245f7dca79f"
-  },
-  {
-    "username": "Mehmet",
-    "posts": [],
-    "following": [],
-    "followers": [],
-    "id": "35ee48ba-337a-4e2d-a337-6241d102e1bd"
+    "ahmet": {
+      "username": "Ahmet",
+      "posts": [
+        {
+          "content": "Deneme Makalesi",
+          "comment": "Çok güzel",
+          "id": "be36f0d9-afec-49cb-9931-3d317bdbb849"
+        }
+      ],
+      "following": [
+        "Mehmet"
+      ],
+      "followers": [
+        "Mehmet"
+      ],
+      "id": "3850d361-98e5-4ece-8c47-e7ffaa8edb07"
+    },
+    "mehmet": {
+      "username": "Mehmet",
+      "posts": [
+        {
+          "content": "Deneme makalesi 2",
+          "comment": "Berbat",
+          "id": "1c0b80d0-99d6-4085-bb39-610fc72a5f12"
+        }
+      ],
+      "following": [
+        "Ahmet"
+      ],
+      "followers": [
+        "Ahmet"
+      ],
+      "id": "9da73e98-dd39-42fa-8cbe-46d7e3f87006"
+    }
   }
 ]
