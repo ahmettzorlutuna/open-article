@@ -1,4 +1,5 @@
 const Post = require('./post')
+const Comment = require('./comment')
 const uuid = require('uuid')
 
 
@@ -11,14 +12,18 @@ class User{
         this.id = id
         
     }
-    createPost(content, comment){
-        const post = new Post(content,comment)
+    createPost(name,content, comment){
+        const post = new Post(name,content,comment)
         this.posts.push(post)
         return post
     }
     follow(user){
         this.following.push(user.username)
         user.followers.push(this.username)
+    }
+    makeComment(user,postName,name,content){
+        const commentt = new Comment(name,content)
+        const post = user.posts.forEach(o => o.name == postName)
     }
     static create({username,posts,following,followers,id}){
         return new User(username,posts,following,followers,id)
