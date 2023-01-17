@@ -4,9 +4,29 @@
       "username": "Ahmet",
       "posts": [
         {
+          "name": "Ahmet'in Makalesi",
           "content": "Deneme Makalesi",
-          "comment": "Çok güzel",
-          "id": "be36f0d9-afec-49cb-9931-3d317bdbb849"
+          "comment": [],
+          "id": "b0a628c1-b9bf-4583-aaa1-3a3cb544e56a"
+        },
+        {
+          "name": "Ahmet'in Makalesi güncellenmiş2 ",
+          "content": "Ahmet'in yeni güncellenmiş makalesi2",
+          "comment": [
+            {
+              "userName": "Mehmet",
+              "commentName": "Deneme Yorumu",
+              "commentContent": "güzel",
+              "commentId": "57581a6d-fbf5-4bc3-9760-ece5b35c3908"
+            },
+            {
+              "userName": "Mehmet",
+              "commentName": "Deneme yorumu 2 güncellenmiş yeni ad",
+              "commentContent": "Deneme yorumu 2 güncel içerik",
+              "commentId": "62a62f4d-f2ed-4cd4-b769-4e12d5366c78"
+            }
+          ],
+          "id": "ff0fa698-bf82-4e14-9e15-357a38039ed7"
         }
       ],
       "following": [
@@ -15,15 +35,17 @@
       "followers": [
         "Mehmet"
       ],
-      "id": "3850d361-98e5-4ece-8c47-e7ffaa8edb07"
+      "id": "c9ee743b-58ea-471d-8a90-204d9a30f7f3",
+      "messages": []
     },
     "mehmet": {
       "username": "Mehmet",
       "posts": [
         {
+          "name": "Mehmet'in makalesi",
           "content": "Deneme makalesi 2",
-          "comment": "Berbat",
-          "id": "1c0b80d0-99d6-4085-bb39-610fc72a5f12"
+          "comment": [],
+          "id": "36a6d87f-2b96-4eb0-9721-9ae933ee42c3"
         }
       ],
       "following": [
@@ -32,7 +54,8 @@
       "followers": [
         "Ahmet"
       ],
-      "id": "9da73e98-dd39-42fa-8cbe-46d7e3f87006"
+      "id": "cd6fa58d-4c3d-4c38-90f5-12e12cf4d795",
+      "messages": []
     }
   }
 ]
