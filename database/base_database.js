@@ -7,17 +7,27 @@ class BaseDatabase{
         this.filename = model.name
     }
     save(objects){
-        //Circular Dependency olmadığı için JSON stringify kullandım
-        fs.writeFileSync(`${__dirname}/${this.filename}.json`, JSON.stringify(objects, null, 2))
+        return new Promise((resolve, reject)=>{
+            fs.writeFile(`${__dirname}/${this.filename}.json`, JSON.stringify(objects, null, 2),(err)=>{
+                if (err) reject(err)
+                resolve()
+            })
+        })
     }
     load(){
-        const data = JSON.parse(fs.readFileSync(`${__dirname}/${this.filename}.json`, 'utf-8'))
-        return data.map(this.model.create)
+        //(err) is a callback function which is if there is a err return err if not resolve the data
+        return new Promise((resolve,reject)=>{
+            fs.readFile(`${__dirname}/${this.filename}.json`,'utf-8',(err,file)=>{  
+                if(err) reject(err)
+                const objects = JSON.parse(file)
+                resolve(objects.map(this.model.create))
+            })
+        })
     }
-    insert(object){
-        const objects = this.load()
+    async insert(object){
+        const objects = await this.load()
         objects.push(object)
-        this.save(objects)
+        return this.save(objects)
     }
     remove(index){
         const objects = this.load()
@@ -33,8 +43,8 @@ class BaseDatabase{
         objects.splice(index, 1, object)
         this.save(objects)
     }
-    findByName(name){
-        const data = this.load()
+    async findByName(name){
+        const data = await this.load()
         return data.find(o => o.name == name)
     }
 }
