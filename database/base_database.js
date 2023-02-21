@@ -8,10 +8,10 @@ class BaseDatabase{
     }
     save(objects){
         //Circular Dependency olmadığı için JSON stringify kullandım
-        fs.writeFileSync(`./${this.filename}.json`, JSON.stringify(objects, null, 2))
+        fs.writeFileSync(`${__dirname}/${this.filename}.json`, JSON.stringify(objects, null, 2))
     }
     load(){
-        const data = JSON.parse(fs.readFileSync(`./${this.filename}.json`, 'utf-8'))
+        const data = JSON.parse(fs.readFileSync(`${__dirname}/${this.filename}.json`, 'utf-8'))
         return data.map(this.model.create)
     }
     insert(object){
