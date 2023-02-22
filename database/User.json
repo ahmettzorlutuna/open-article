@@ -5,20 +5,27 @@
       {
         "name": "Ahmet'in Makalesi",
         "content": "Deneme Makalesi",
-        "comment": [],
-        "id": "936f3f8d-3e1e-426d-92bd-268d3a47f49b"
+        "comment": [
+          {
+            "userName": "Mehmet",
+            "commentName": "Deneme Yorumu",
+            "commentContent": "güzel",
+            "commentId": "a0799c82-5904-4ed8-b1ca-1c45aa8d17c4"
+          }
+        ],
+        "postId": "405c0452-261e-40c5-a93d-8be579e9568c"
       },
       {
         "name": "Ahmet'in yeni makalesi",
         "content": "Deneme makalesi yeni",
         "comment": [],
-        "id": "ebe21045-623d-4f89-b54f-6ea6e49bacf8"
+        "postId": "887f6bbb-f659-461c-b97b-3a822442d5ef"
       }
     ],
     "following": [],
     "followers": [],
-    "id": "2f8a3ef4-ea94-4c84-b8b7-f0b7d79911ae",
-    "messages": "c89be4a1-612b-46e3-bd55-fbb5909d4d51"
+    "userId": "24b43eaa-b83d-466a-8471-070196b13613",
+    "messages": []
   },
   {
     "username": "Mehmet",
@@ -27,39 +34,18 @@
         "name": "Mehmet'in makalesi",
         "content": "Deneme makalesi 2",
         "comment": [],
-        "id": "3d43a7bc-c974-4334-a8cf-3b38472c7877"
+        "postId": "da615172-3775-4677-a95f-f1fbf4943c59"
       },
       {
         "name": "Mehmet'in makalesi yeni",
         "content": "Deneme makalesi 2 yeni",
         "comment": [],
-        "id": "43c5764b-6be1-4405-bbdc-907e577b195b"
+        "postId": "7cefd164-5f37-445d-b9a2-688f9b91eaf5"
       }
     ],
     "following": [],
     "followers": [],
-    "id": "c7595baa-e161-4046-8c1d-11199c763735",
-    "messages": "b51d1e78-22c4-4e1a-910b-e2c35c0a5370"
-  },
-  {
-    "username": "Mehmet",
-    "posts": [
-      {
-        "name": "Mehmet'in makalesi",
-        "content": "Deneme makalesi 2",
-        "comment": [],
-        "id": "1895a8ee-b736-43b4-bdce-3078676df725"
-      },
-      {
-        "name": "Mehmet'in makalesi yeni",
-        "content": "Deneme makalesi 2 yeni",
-        "comment": [],
-        "id": "18132914-327c-4951-b732-6d4d53ce2b29"
-      }
-    ],
-    "following": [],
-    "followers": [],
-    "id": "e5479a82-6d4d-4c78-a756-f334f476f442",
+    "userId": "01ebed7c-72d0-4d39-821f-5b554235524e",
     "messages": []
   }
 ]
