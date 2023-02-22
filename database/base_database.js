@@ -29,19 +29,19 @@ class BaseDatabase{
         objects.push(object)
         return this.save(objects)
     }
-    remove(index){
-        const objects = this.load()
+    async remove(index){
+        const objects = await this.load()
         objects.splice(index, 1)
-        this.save(objects)
+        return this.save(objects)
     }
-    findBy(prop, value){
-        return this.load().find(o => o[prop] == value)
+    async findBy(prop, value){
+        return (await this.load()).find(o => o[prop] == value)
     }
-    update(object){
-        const objects = this.load()
+    async update(object){
+        const objects = await this.load()
         const index = objects.findIndex(o => o.id == object.id)
         objects.splice(index, 1, object)
-        this.save(objects)
+        return this.save(objects)
     }
     async findByName(name){
         const data = await this.load()
