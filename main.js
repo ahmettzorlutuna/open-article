@@ -15,7 +15,7 @@ function printPost(post){
 }
 
 
-const ahmet = new User("Ahmet")
+const ahmet = new User("Ahmett")
 const mehmet = new User("Mehmet")
 
 ahmet.createPost("Deneme Makalesi","Çok güzel")
