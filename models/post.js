@@ -5,7 +5,7 @@ class Post{
         this.name = name
         this.content = content
         this.comment = comment
-        this.id = id
+        this.postId = id
     }
 }
 
