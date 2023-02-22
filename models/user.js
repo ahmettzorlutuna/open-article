@@ -8,7 +8,7 @@ class User{
         this.posts = posts
         this.following = following
         this.followers = followers
-        this.id = id
+        this.userId = id
         this.messages = messages
     }
     createPost(name,content, comment){
