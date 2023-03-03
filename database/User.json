@@ -10,21 +10,21 @@
             "userName": "Mehmet",
             "commentName": "Deneme Yorumu",
             "commentContent": "güzel",
-            "commentId": "801b4b00-3f14-4321-9adf-d7a451098efa"
+            "commentId": "992ad422-5451-4bad-bd30-eb8d75f8522e"
           }
         ],
-        "postId": "016e274f-f651-44ba-b1d8-89753d2bf19e"
+        "postId": "33415243-5f3c-4488-8c17-92e608d93369"
       },
       {
         "name": "Ahmet'in yeni makalesi",
         "content": "Deneme makalesi yeni",
         "comment": [],
-        "postId": "1cde41f2-78c6-4882-a12e-8692bb9c9fdc"
+        "postId": "4631f25b-a06a-4650-8eda-30224bb01b3c"
       }
     ],
     "following": [],
     "followers": [],
-    "userId": "f45c86eb-c25b-46b9-bc9e-104f209e0eaf",
+    "userId": "dd05b914-be2a-4cee-9383-b135bc1500ef",
     "messages": []
   },
   {
@@ -34,18 +34,18 @@
         "name": "Mehmet'in makalesi",
         "content": "Deneme makalesi 2",
         "comment": [],
-        "postId": "4460f127-3519-49d7-a7bd-8be83f1777e7"
+        "postId": "9e81d18a-26b8-4d43-9d0e-86392bfcb917"
       },
       {
         "name": "Mehmet'in makalesi yeni",
         "content": "Deneme makalesi 2 yeni",
         "comment": [],
-        "postId": "3e8ede18-946b-4337-8678-83f34c4388bf"
+        "postId": "7e6b6e85-4676-4b6f-bc31-7b7c8afdd5b0"
       }
     ],
     "following": [],
     "followers": [],
-    "userId": "df68b64e-d3bf-4fe6-a2b2-694bac011951",
+    "userId": "374ba69c-d1ec-4a9f-a38a-196b42335754",
     "messages": []
   }
 ]
