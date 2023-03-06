@@ -3,12 +3,12 @@ const Comment = require('./comment')
 const uuid = require('uuid')
 
 class User{
-    constructor(username, posts = [], following = [], followers = [], messages = [], id = uuid.v4()){
+    constructor(username, posts = [], following = [], followers = [], messages = [], userId = uuid.v4()){
         this.username = username
         this.posts = posts
         this.following = following
         this.followers = followers
-        this.userId = id
+        this.userId = userId
         this.messages = messages
     }
     createPost(name,content, comment){
@@ -43,11 +43,8 @@ class User{
     }
     likePost(post){ 
     }
-    sendMessage(user){
-
-    }
-    static create({username,posts,following,followers,id}){
-        return new User(username,posts,following,followers,id)
+    static create({username,posts,following,followers,messages,userId}){
+        return new User(username,posts,following,followers,messages,userId)
     }
 }
 
