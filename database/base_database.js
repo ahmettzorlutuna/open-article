@@ -39,13 +39,17 @@ class BaseDatabase{
     }
     async update(object){
         const objects = await this.load()
-        const index = objects.findIndex(o => o.id == object.id)
+        const index = objects.findIndex(o => o.userId == object.userId)
         objects.splice(index, 1, object)
         return this.save(objects)
     }
     async findByName(name){
         const data = await this.load()
         return data.find(o => o.name == name)
+    }
+    async find(userId){
+        const objects = await this.load()
+        return objects.find(o => o.userId == userId)
     }
 }
 
