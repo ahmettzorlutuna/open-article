@@ -1,3 +1,9 @@
 extends layout
 block content
-    h1 #{user.username}
+    <div class="user-detail">
+        <h1 class="user-detail-baslik">#{user.username}'s Articles</h1>
+        each post in user.posts
+            <h1>#{post.name}</h1>
+            <p>#{post.content}</p>
+    </div>
+    
