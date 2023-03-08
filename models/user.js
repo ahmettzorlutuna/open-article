@@ -17,8 +17,8 @@ class User{
         return post
     }
     follow(user){
-        this.following.push(user.username)
-        user.followers.push(this.username)
+        this.following.push(user)
+        user.followers.push(this)
     }
     updateArticleByName(postName,name,content,comment){
         const index = this.posts.findIndex(o => o.name == postName)
