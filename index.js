@@ -26,6 +26,7 @@ app.get('/users', async(req, res) => {
 app.get('/users/:id', async(req,res) => {
     const user = await user_database.find(req.params.id)
     if(!user) return res.status(404).send('Cannot get user')
+    //if(!user.followers) return res.status(404).send('Cannot find followings or followers')
     res.render('user', {user})
 })
 
