@@ -2,18 +2,16 @@ extends layout
 block content
     div(class='user-detail')
         h1(class='user-detail-baslik') #{user.username}'s Articles / FollowingCount: #{user.following.length} FollowerCount: #{user.followers.length}
-        p Followings #{user.following.username}
-        p Followers #{user.followers.username}
+        p Followers
+        ol
+            each follower in user.followers
+                li #{follower.username}
+        //- p Followers #{user.followers.username}
+        //- p #{user.followers[0].username}
         div(class='articles')
             each post in user.posts
                 h1 #{post.name}
                 p #{post.content}
-        p #{user.following[0].username}
-        p #{user.followers[0].username}
-        p Followings
-        ol
-            each user in user.following 
-                li #{user.username}
         
     
     
