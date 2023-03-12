@@ -46,7 +46,7 @@ app.post('/users/', async(req,res) => {
   res.send(newUser)
 })
 
-//New booking
+//New post
 app.post('/users/:userId', async(req,res) => {
   const {name, content} = req.body
   const {userId} = req.params
@@ -63,10 +63,20 @@ app.post('/user/:userId/:follow', async(req,res) => {
   const user = await user_database.find(userId)
   const user2 = await user_database.find(follow)
   user.follow(user2)
-  user2.follow(user)
   await user_database.update(user)
   await user_database.update(user2)
   res.send('Ok')
+})
+
+app.post('/comment/:postId', async(req,res) => {
+  const postId = req.params
+  const {name, content, comment} = req.body
+})
+
+app.get('users/:userId/post/:postId', async(req,res) => {
+  const {userId, postId} = req.params
+  const user = user_database.find(user)
+  res.send(post)
 })
 
 
