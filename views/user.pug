@@ -6,11 +6,13 @@ block content
         ol
             each follower in user.followers
                 li #{follower.username}
-        //- p Followers #{user.followers.username}
-        //- p #{user.followers[0].username}
+        p Following
+        ol
+            each following in user.following
+                li #{following.username}
         div(class='articles')
             each post in user.posts
-                h1 #{post.name}
+                a(href=`/users/${user.userId}/post/${post.postId}`) #{post.name}
                 p #{post.content}
         
     
