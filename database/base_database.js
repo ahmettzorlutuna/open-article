@@ -60,6 +60,10 @@ class BaseDatabase{
         const objects = await this.load()
         return objects.find(o => o.userId == userId)
     }
+    async findPost(postId){
+        const objects = await this.load()
+        return objects.posts.find(o => o.postId == postId)
+    }
 }
 
 module.exports = BaseDatabase
