@@ -16,7 +16,7 @@ async function main(){
     try {
         // await userDatabase.save([ahmet, mehmet, selami])
         const data = await userDatabase.load()
-        console.log(data)
+        console.log(data[0])
     } catch (error) {
         return console.log(error)
     }
