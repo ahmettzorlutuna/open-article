@@ -1,6 +1,10 @@
 extends layout
 block content
     h1 Welcome Post Page
+    h1 #{post.name}
+    h2 #{post.content}
     ol
-        each post in user.following
-            li #{following.username}
+        each comment in post.comment
+            li #{comment.commentName}
+            h1 #{comment.commentContent}
+            h2 #{comment.userName}' tarafından yorum yapıldı
