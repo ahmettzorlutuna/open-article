@@ -1,4 +1,7 @@
 extends layout
 block content
     h1 Welcome users
-    p #{post.name}
+    ol
+        each user in users
+            li
+                a(href=`/users/${user.userId}`) #{user.username}
