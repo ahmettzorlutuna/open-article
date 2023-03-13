@@ -2,6 +2,8 @@ const express = require('express')
 const user_database = require('./database')
 const bodyParser = require('body-parser')
 const User = require('./models/user')
+const Flatted = require('flatted')
+const { application } = require('express')
 
 const app = express()
 const port = 3000
@@ -22,12 +24,13 @@ app.get('/users', async(req, res) => {
     res.render('users', {users})
   })
 
-//Detail
+//User Detail
 app.get('/users/:id', async(req,res) => {
     const user = await user_database.find(req.params.id)
     if(!user) return res.status(404).send('Cannot get user')
     //if(!user.followers) return res.status(404).send('Cannot find followings or followers')
     res.render('user', {user})
+
 })
 
 //Delete User
@@ -68,14 +71,22 @@ app.post('/user/:userId/:follow', async(req,res) => {
   res.send('Ok')
 })
 
-app.post('/comment/:postId', async(req,res) => {
-  const postId = req.params
-  const {name, content, comment} = req.body
+//Article Detail
+app.get('/users/article/:userId/:postId', async(req,res) => {
+  const {userId, postId} = req.params
+  const post = await user_database.findByPostId(userId, postId)
+  // res.render("post", {post})
+  res.render("post", {post})
 })
 
-app.get('users/:userId/post/:postId', async(req,res) => {
+//Comment Post
+app.post('/users/article/:userId/:postId', async(req,res) => {
   const {userId, postId} = req.params
-  const user = user_database.find(user)
+  const {commentName, commentContent} = req.body
+  const user = await user_database.find(userId)
+  const post = await user_database.findByPostId(userId, postId)
+  const comment = user.makeCommentById(postId, user, commentName, commentContent)
+  await user_database.update(user)
   res.send(post)
 })
 
