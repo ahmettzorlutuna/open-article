@@ -60,9 +60,11 @@ class BaseDatabase{
         const objects = await this.load()
         return objects.find(o => o.userId == userId)
     }
-    async findPost(postId){
+    async findByPostId(userId, postId){
         const objects = await this.load()
-        return objects.posts.find(o => o.postId == postId)
+        const user = objects.find(user => user.userId == userId)
+        const post = user.posts.find(post=> post.postId == postId)
+        return post
     }
 }
 
