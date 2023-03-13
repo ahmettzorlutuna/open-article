@@ -1,9 +1,9 @@
 const uuid = require('uuid')
 
 class Comment{
-    constructor(name, commentContent, userName, id=uuid.v4()){
+    constructor(commentName, commentContent, userName, id=uuid.v4()){
         this.userName = userName
-        this.commentName = name
+        this.commentName = commentName
         this.commentContent = commentContent
         this.commentId = id
     }
