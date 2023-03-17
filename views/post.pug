@@ -1,10 +1,14 @@
 extends layout
 block content
     h1 Welcome Post Page
+    h1 Likes #{post.likes} Dislikes #{post.dislikes} 
     h1 #{post.name}
     h2 #{post.content}
+    
     ol
         each comment in post.comment
             li #{comment.commentName}
             h1 #{comment.commentContent}
-            h2 #{comment.userName}' tarafından yorum yapıldı
+            h2 #{comment.username}' tarafından yorum yapıldı
+            
+            
