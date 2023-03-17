@@ -2,8 +2,6 @@ const express = require('express')
 const user_database = require('./database')
 const bodyParser = require('body-parser')
 const User = require('./models/user')
-const Flatted = require('flatted')
-const { application } = require('express')
 
 const app = express()
 const port = 3000
@@ -61,8 +59,7 @@ app.post('/users/:userId', async(req,res) => {
 
 //Follow
 app.post('/user/:userId/:follow', async(req,res) => {
-  const {userId} = req.params
-  const {follow} = req.params
+  const {userId, follow} = req.params
   const user = await user_database.find(userId)
   const user2 = await user_database.find(follow)
   user.follow(user2)
@@ -74,21 +71,43 @@ app.post('/user/:userId/:follow', async(req,res) => {
 //Article Detail
 app.get('/users/article/:userId/:postId', async(req,res) => {
   const {userId, postId} = req.params
-  const post = await user_database.findByPostId(userId, postId)
-  // res.render("post", {post})
+  const post = await user_database.findPostById(postId)
   res.render("post", {post})
 })
 
 //Comment Post
-app.post('/users/article/:userId/:postId', async(req,res) => {
-  const {userId, postId} = req.params
+app.post('/users/comment/:userId/:postId', async(req,res) => {
+  const {postId, userId} = req.params
   const {commentName, commentContent} = req.body
   const user = await user_database.find(userId)
-  const post = await user_database.findByPostId(userId, postId)
-  const comment = user.makeCommentById(postId, user, commentName, commentContent)
-  await user_database.update(user)
-  res.send(post)
+  const post = await user_database.findPostById(postId)
+  user.makeCommentById(post, commentName, commentContent)
+  await user_database.updatePost(post)
+  res.send('ok')
 })
+
+//Like Post
+app.post('/users/like/:userId/:postId', async(req,res) => {
+  const {postId, userId} = req.params
+  const user = await user_database.find(userId)
+  const post = await user_database.findPostById(postId)
+  user.likePost(post)
+  await user_database.updatePost(post)
+  res.send('ok')
+})
+
+//Dislike Post
+app.post('/users/dislike/:userId/:postId', async(req,res) => {
+  const {postId, userId} = req.params
+  const user = await user_database.find(userId)
+  const post = await user_database.findPostById(postId)
+  user.dislikePost(post)
+  await user_database.updatePost(post)
+  res.send('ok')
+})
+
+
+
 
 
 app.listen(port, () => {
