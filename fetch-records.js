@@ -14,9 +14,9 @@ const selami = new User("Selami")
 
 async function main(){
     try {
-        // await userDatabase.save([ahmet, mehmet, selami])
+        await userDatabase.save([ahmet, mehmet, selami])
         const data = await userDatabase.load()
-        console.log(data[0])
+        console.log(data)
     } catch (error) {
         return console.log(error)
     }
