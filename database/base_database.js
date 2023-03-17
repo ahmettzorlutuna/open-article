@@ -60,11 +60,32 @@ class BaseDatabase{
         const objects = await this.load()
         return objects.find(o => o.userId == userId)
     }
-    async findByPostId(userId, postId){
+    async findPostById(postId){
         const objects = await this.load()
-        const user = objects.find(user => user.userId == userId)
-        const post = user.posts.find(post=> post.postId == postId)
-        return post
+        for (let i = 0; i < objects.length; i++) {
+            const post = objects[i].posts;
+            for (let j = 0; j < post.length; j++) {
+                const currenPost = post[j];
+                if(currenPost.postId == postId){
+                    return currenPost
+                }
+            }
+            
+        }
+    }
+    async updatePost(post){
+        const objects = await this.load()
+        for (let i = 0; i < objects.length; i++) {
+            const posts = objects[i].posts;
+            for (let j = 0; j < posts.length; j++) {
+                const currenPost = posts[j];
+                if(currenPost.postId == post.postId){
+                    posts.splice(j, 1, post)
+                    return this.save(objects)
+                }
+                
+            }
+        }
     }
 }
 
