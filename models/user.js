@@ -17,8 +17,14 @@ class User{
         return post
     }
     follow(user){
-        this.following.push(user)
-        user.followers.push(this)
+        const isFollowUser = user.followers.find(o=> o.UserId == this.UserId)
+        if(isFollowUser){
+            throw new Error("User exist")
+        }else{
+            this.following.push(user)
+            user.followers.push(this)
+        }
+        
     }
     updateArticleByName(postName,name,content,comment){
         const index = this.posts.findIndex(o => o.name == postName)
