@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const User = require('./models/user')
 const UsersRouter = require('./routes/users')
 const IndexRouter = require('./routes/index')
+require('./mongo-connection')
 
 const app = express()
 const port = 3000
