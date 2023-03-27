@@ -4,33 +4,15 @@ const flatted = require('flatted')
 class BaseDatabase{
     constructor(model){
         this.model = model
-        this.filename = model.name
     }
     save(objects){
-        return new Promise((resolve, reject)=>{
-            fs.writeFile(`${__dirname}/${this.filename}.json`, flatted.stringify(objects, null, 2),(err)=>{
-                if (err) reject(err)
-                resolve()
-            })
-        })
+        return this.model.insert(objects)
     }
     load(){
-        //(err) is a callback function which is if there is a err return err if not resolve the data
-        return new Promise((resolve,reject)=>{
-            fs.readFile(`${__dirname}/${this.filename}.json`,'utf-8',(err,file)=>{  
-                if(err) reject(err)
-                const objects = flatted.parse(file)
-                resolve(objects.map(this.model.create))
-            })
-        })
+        return this.model.find({})
     }
     async insert(object){
-        const objects = await this.load()
-        if(!(object instanceof this.model)){ //İf incoming object is not instance of this.model we created a new object of this model and pushed into the objects
-            object = this.model.create(object)
-            objects.push(object)
-        }
-        return this.save(objects)
+        return await this.model.create(object)
     }
     async remove(index){
         const objects = await this.load()
@@ -52,11 +34,8 @@ class BaseDatabase{
         objects.splice(index, 1, object)
         return this.save(objects)
     }
-    async findByName(name){
-        const data = await this.load()
-        return data.find(o => o.name == name)
-    }
     async find(userId){
+        return this.model.find(userId)
         const objects = await this.load()
         return objects.find(o => o.userId == userId)
     }
