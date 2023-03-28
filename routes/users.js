@@ -13,14 +13,13 @@ router.get('/:id', async(req,res) => {
     const user = await user_database.find(req.params.id)
     if(!user) return res.status(404).send('Cannot get user')
     //if(!user.followers) return res.status(404).send('Cannot find followings or followers')
-    // res.render('user', {user})
-    res.send('Ok')
+    res.render('user', {user})
 
 })
 
 //Delete User
 router.delete('/:userId', async(req,res) => {
-  const user = user_database.removeBy('id', req.params.userId)
+  const user = user_database.removeById(req.params.userId)
   res.send(user)
 })
 
@@ -28,9 +27,6 @@ router.delete('/:userId', async(req,res) => {
 router.post('/', async(req,res) => {
   await user_database.insert(req.body)
   res.send('Ok')
-
-  // const newUser = user_database.insert(req.body)
-  // res.send(newUser)
 })
 
 //New post
@@ -39,7 +35,7 @@ router.post('/:userId', async(req,res) => {
   const {userId} = req.params
   const user = await user_database.find(userId)
   const newPost = user.createPost(name,content)
-  await user_database.update(user)
+  await user.save()
   res.send(newPost)
 })
 
@@ -49,8 +45,8 @@ router.post('/follow/:userId/:userId2', async(req,res) => {
   const user = await user_database.find(userId)
   const user2 = await user_database.find(userId2)
   user.follow(user2)
-  await user_database.update(user)
-  await user_database.update(user2)
+  await user.save()
+  await user2.save()
   res.send('Ok')
 })
 
