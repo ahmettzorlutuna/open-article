@@ -1,6 +1,7 @@
 const uuid = require("uuid");
 const Post = require("./post");
 const Comment = require("./comment");
+const flatted = require("flatted")
 
 const mongoose = require("mongoose");
 
@@ -12,8 +13,8 @@ const UserSchema = new mongoose.Schema({
   messages: [],
 });
 
-UserSchema.methods.createPost = function createPost(name, content, comment) {
-  const post = new Post(name, content, comment);
+UserSchema.methods.createPost = function createPost(data) {
+  const post = new Post(data)
   this.posts.push(post);
   return post;
 };
@@ -27,6 +28,12 @@ UserSchema.methods.follow = function follow(user) {
     user.followers.push(this);
   }
 };
+
+UserSchema.methods.makeCommentById = function makeCommentById(post, data){
+  const comment = new Comment(data)
+  post.comment.push(comment)
+  return comment
+}
 
 module.exports = mongoose.model("User", UserSchema);
 
