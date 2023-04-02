@@ -14,7 +14,10 @@ class BaseDatabase{
     async insert(object){
         return await this.model.create(object)
     }
-    async remove(index){
+    async removeById(id){
+        return this.model.findByIdAndRemove({_id: id})
+    }
+    async remove(){
         const objects = await this.load()
         objects.splice(index, 1)
         return this.save(objects)
@@ -28,16 +31,21 @@ class BaseDatabase{
     async findBy(prop, value){
         return (await this.load()).find(o => o[prop] == value)
     }
-    async update(object){
-        const objects = await this.load()
-        const index = objects.findIndex(o => o.userId == object.userId)
-        objects.splice(index, 1, object)
-        return this.save(objects)
+    async update(id, object){
+        return this.model.findByIdAndUpdate(id, object)
     }
-    async find(userId){
-        return this.model.find(userId)
-        const objects = await this.load()
-        return objects.find(o => o.userId == userId)
+    async updatePostById(name, updatedPost){
+        try {
+            const result = await this.model.updateOne({ 'posts._id': name }, { $set: { 'posts.$': updatedPost } });
+            console.log(result)
+            return result
+        } catch (error) {
+            console.error(error);
+            throw new Error('Failed to update post in database');
+        }
+    }
+    async find(id){
+        return this.model.findById(id)
     }
     async findPostById(postId){
         const objects = await this.load()
@@ -45,7 +53,7 @@ class BaseDatabase{
             const post = objects[i].posts;
             for (let j = 0; j < post.length; j++) {
                 const currenPost = post[j];
-                if(currenPost.postId == postId){
+                if(currenPost._id == postId){
                     return currenPost
                 }
             }
@@ -57,8 +65,8 @@ class BaseDatabase{
         for (let i = 0; i < objects.length; i++) {
             const posts = objects[i].posts;
             for (let j = 0; j < posts.length; j++) {
-                const currenPost = posts[j];
-                if(currenPost.postId == post.postId){
+                const currentPost = posts[j];
+                if(currentPost._id == post._id){
                     posts.splice(j, 1, post)
                     return this.save(objects)
                 }
