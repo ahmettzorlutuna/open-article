@@ -12,7 +12,7 @@ block content
                 li #{following.username}
         div(class='articles')
             each post in user.posts
-                a(href=`/users/article/${user.userId}/${post.postId}`) #{post.name}
+                a(href=`/users/article/${post._id}`) #{post.name}
                 p #{post.content}
         
     
