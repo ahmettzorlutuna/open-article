@@ -62,7 +62,7 @@ router.post("/comment/:userId/:postId", async (req, res) => {
   const {commentName, commentContent} = req.body
   const user = await user_database.find(userId);
   const post = await user_database.findPostById(postId);
-  const commented = user.makeCommentById(post, {commentName, commentContent});
+  user.makeCommentById(post, {commentName, commentContent});
   const result = user_database.updatePostById(post._id, post)
   console.log(result)
   res.status(200).send(post);
@@ -74,7 +74,7 @@ router.post("/like/:userId/:postId", async (req, res) => {
   const user = await user_database.find(userId);
   const post = await user_database.findPostById(postId);
   user.likePost(post);
-  await user_database.updatePost(post);
+  await user_database.updatePostById(post._id, post);
   res.send("ok");
 });
 
@@ -84,7 +84,7 @@ router.post("/dislike/:userId/:postId", async (req, res) => {
   const user = await user_database.find(userId);
   const post = await user_database.findPostById(postId);
   user.dislikePost(post);
-  await user_database.updatePost(post);
+  await user_database.updatePostById(post._id, post);
   res.send("ok");
 });
 
