@@ -36,7 +36,7 @@ class BaseDatabase{
     }
     async updatePostById(name, updatedPost){
         try {
-            const result = await this.model.updateOne({ 'posts._id': name }, { $set: { 'posts.$': updatedPost } });
+            const result = this.model.updateOne({ 'posts._id': name }, { $set: { 'posts.$': updatedPost } });
             console.log(result)
             return result
         } catch (error) {
