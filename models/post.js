@@ -4,10 +4,18 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema({
   name: String,
   content: String,
-  comment: [],
+  comment: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+      autopopulate: true,
+    },
+  ],
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
 });
+
+PostSchema.plugin(require('mongoose-autopopulate'));
 
 module.exports = mongoose.model("Post", PostSchema);
 
