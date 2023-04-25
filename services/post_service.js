@@ -10,6 +10,10 @@ class PostService extends BaseService {
         await user.save()
         return post
     }
+
+    async removePostById(postId){
+        return this.removeByObjectId(postId)
+    }
 }
 
 module.exports = new PostService(Post);
