@@ -11,6 +11,10 @@ class CommentService extends BaseService {
     await post.save()
     return comment
   }
+
+  async findComments(){
+    return this.load()
+  }
 }
 
 module.exports = new CommentService(Comment);
