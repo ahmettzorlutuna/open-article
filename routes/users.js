@@ -10,6 +10,13 @@ router.get("/", async (req, res) => {
   res.render("users", { users });
 });
 
+//Spesific root first
+//All comments
+router.get("/comments", async(req,res) => {
+  const comments = await commentService.findComments()
+  res.render('comments', {comments})
+})
+
 //User Detail
 router.get("/:id", async (req, res) => {
   const user = await userService.find(req.params.id);
@@ -17,6 +24,13 @@ router.get("/:id", async (req, res) => {
   //if(!user.followers) return res.status(404).send('Cannot find followings or followers')
   res.render("user", { user });
 });
+
+//Delete Post
+router.delete("/posts/:postId", async(req,res) => {
+  const {postId} = req.params.postId
+  const post = await postService.removePostById(postId)
+  return post
+})
 
 //Delete User
 router.delete("/:userId", async (req, res) => {
