@@ -7,7 +7,11 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
   username: String,
-  posts: [],
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post',
+    autopopulate: true
+}],
   following: [],
   followers: [],
   messages: [],
@@ -29,11 +33,15 @@ UserSchema.methods.follow = function follow(user) {
   }
 };
 
-UserSchema.methods.makeCommentById = function makeCommentById(post, data){
-  const comment = new Comment(data)
-  post.comment.push(comment)
-  return comment
+UserSchema.methods.likePost = function likePost(post){
+  post.likes += 1
 }
+
+UserSchema.methods.dislikePost = function likePost(post){
+  post.dislikes += 1
+}
+
+UserSchema.plugin(require('mongoose-autopopulate'));
 
 module.exports = mongoose.model("User", UserSchema);
 
