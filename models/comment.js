@@ -4,10 +4,18 @@ const CommentSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        autopopulate: true
+        autopopulate: {maxDepth: 2}
     },
-    commentName: String,
-    commentContent: String,
+    commentName: {
+        type: String,
+        required: true,
+        minLength: 5
+      },
+    commentContent: {
+        type: String,
+        required: true,
+        minLength: 10
+      },
     
 })
 CommentSchema.plugin(require('mongoose-autopopulate'));
