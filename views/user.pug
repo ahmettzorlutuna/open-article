@@ -5,11 +5,11 @@ block content
         p Followers
         ol
             each follower in user.followers
-                li #{follower.username}
+                a(href=`/users/${follower._id}`) #{follower.username}
         p Following
         ol
             each following in user.following
-                li #{following.username}
+                a(href=`/users/${following._id}`) #{following.username}
         div(class='articles')
             each post in user.posts
                 a(href=`/users/article/${post._id}`) #{post.name}
