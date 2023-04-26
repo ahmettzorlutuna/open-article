@@ -2,13 +2,21 @@ const uuid = require("uuid");
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  name: String,
-  content: String,
+  name: {
+    type: String,
+    required: true,
+    minLength: 5
+  },
+  content: {
+    type: String,
+    required: true,
+    minLength: 10
+  },
   comment: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Comment',
-      autopopulate: true,
+      autopopulate: {maxDepth: 2},
     },
   ],
   likes: { type: Number, default: 0 },
