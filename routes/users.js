@@ -10,13 +10,6 @@ router.get("/", async (req, res) => {
   res.render("users", { users });
 });
 
-//Spesific root first
-//All comments
-router.get("/comments", async(req,res) => {
-  const comments = await commentService.findComments()
-  res.render('comments', {comments})
-})
-
 //User Detail
 router.get("/:id", async (req, res) => {
   const user = await userService.find(req.params.id);
@@ -54,20 +47,17 @@ router.post("/:userId", async (req, res) => {
 });
 
 //Follow
-router.post("/follow/:userId/:userId2", async (req, res) => {
-  const { userId, userId2 } = req.params;
-  const user = await userService.find(userId);
-  const user2 = await userService.find(userId2);
-  user.follow(user2);
-  await user.save();
-  await user2.save();
+router.post("/follow/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const { userId2 } = req.body;
+  userService.followUser(userId,userId2);
   res.send("Ok");
 });
 
 //Post Detail
 router.get("/article/:postId", async (req, res) => {
   const { postId } = req.params;
-  const post = await userService.findPostById(postId);
+  const post = await postService.findPostById(postId);
   res.render("post", { post });
 });
 
