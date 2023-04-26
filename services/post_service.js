@@ -14,6 +14,17 @@ class PostService extends BaseService {
     async removePostById(postId){
         return this.removeByObjectId(postId)
     }
+    async findPostById(postId){
+        return this.findByObjectId(postId)
+    }
+
+    async likePost(userId, postId){
+        const user = await user_service.find(userId);
+        const post = await this.find(postId);
+        user.likePost(post)
+        await post.save()
+        return post
+    }
 }
 
 module.exports = new PostService(Post);
