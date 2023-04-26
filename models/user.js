@@ -6,14 +6,26 @@ const flatted = require("flatted")
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  username: String,
+  username: {
+    type: String,
+    required: true,
+    minLength: 3
+  },
   posts: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Post',
-    autopopulate: true
+    autopopulate: {maxDepth: 1}
 }],
-  following: [],
-  followers: [],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    autopopulate: {maxDepth: 1}
+}],
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    autopopulate: {maxDepth: 1}
+}],
   messages: [],
 });
 
