@@ -1,4 +1,3 @@
-const uuid = require("uuid");
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
@@ -20,7 +19,7 @@ const PostSchema = new mongoose.Schema({
     },
   ],
   likes: { type: Number, default: 0 },
-  dislikes: { type: Number, default: 0 },
+  dislikes: { type: Number, default: 0 }
 });
 
 PostSchema.plugin(require('mongoose-autopopulate'));
