@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {commentService, userService} = require('../services')
+const {commentService} = require('../services')
 
 
 //All comments
