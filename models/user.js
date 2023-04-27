@@ -1,8 +1,4 @@
-const uuid = require("uuid");
 const Post = require("./post");
-const Comment = require("./comment");
-const flatted = require("flatted")
-
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
@@ -49,7 +45,7 @@ UserSchema.methods.likePost = function likePost(post){
   post.likes += 1
 }
 
-UserSchema.methods.dislikePost = function likePost(post){
+UserSchema.methods.dislikePost = function dislikePost(post){
   post.dislikes += 1
 }
 
