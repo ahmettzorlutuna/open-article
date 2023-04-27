@@ -25,6 +25,14 @@ class PostService extends BaseService {
         await post.save()
         return post
     }
+
+    async dislikePost(userId, postId){
+        const user = await user_service.find(userId);
+        const post = await this.find(postId);
+        user.dislikePost(post)
+        await post.save()
+        return post
+    }
 }
 
 module.exports = new PostService(Post);
