@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const {userService, postService, commentService} = require("../services");
-const Post = require("../models/post")
 
 
 //Users
@@ -57,7 +56,7 @@ router.post("/follow/:userId", async (req, res) => {
 //Post Detail
 router.get("/article/:postId", async (req, res) => {
   const { postId } = req.params;
-  const post = await postService.findPostById(postId);
+  const post = await postService.findByObjectId(postId);
   res.render("post", { post });
 });
 
@@ -73,23 +72,21 @@ router.post("/comment/:userId", async (req, res) => {
 });
 
 //Like Post
-router.post("/like/:userId/:postId", async (req, res) => {
-  const { postId, userId } = req.params;
-  const user = await userService.find(userId);
-  const post = await userService.findPostById(postId);
-  user.likePost(post);
-  await userService.updatePostById(post._id, post);
-  res.send("ok");
+router.post("/like/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const { postId } = req.body;
+  
+  const post = postService.likePost(userId, postId);
+  res.send(post);
 });
 
 //Dislike Post
-router.post("/dislike/:userId/:postId", async (req, res) => {
-  const { postId, userId } = req.params;
-  const user = await userService.find(userId);
-  const post = await userService.findPostById(postId);
-  user.dislikePost(post);
-  await userService.updatePostById(post._id, post);
-  res.send("ok");
+router.post("/dislike/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const { postId } = req.body;
+  
+  const post = postService.dislikePost(userId, postId);
+  res.send(post);
 });
 
 module.exports = router;
