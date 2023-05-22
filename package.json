@@ -9,15 +9,20 @@
     "pug": "^3.0.2",
     "uuid": "^9.0.0"
   },
-  "name": "restaurant",
+  "name": "open-article",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon -i '*.json' index.js",
-    "start": "node main.js"
+    "start": "node ./bin/www",
+    "test": "jest --coverage --verbose",
+    "test-watch": "jest --coverage --verbose --detectOpenHandles --watch",
+    "watch": "nodemon -i '*.json' index.js"
   },
   "author": "Ahmet Zorlutuna <ahmettayyip3439@gmail.com>",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3"
+  }
 }
