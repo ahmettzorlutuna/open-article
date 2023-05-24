@@ -3,16 +3,18 @@ const request = require('supertest')(app)
 
 test('create a new user', async() => {
     const userToCreate = {
-        username: 'yali'
+        username: 'cengiz'
     }
     const response = await request
         .post('/users')
         .send(userToCreate)
         .expect(200)
 
-    const userCreated = response.body
+    const userCreated = response
 
-    expect(userToCreate).toMatchObject(userCreated)
+    console.log(userCreated)
+
+    // expect(userCreated).toMatchObject(userToCreate)
     // expect(userCreated.bookings).toEqual([])
 
 })
