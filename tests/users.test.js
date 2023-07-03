@@ -16,5 +16,4 @@ test('create a new user', async() => {
 
     // expect(userCreated).toMatchObject(userToCreate)
     // expect(userCreated.bookings).toEqual([])
-
 })
