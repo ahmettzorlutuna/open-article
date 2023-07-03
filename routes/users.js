@@ -6,7 +6,8 @@ const {userService, postService, commentService} = require("../services");
 //Users
 router.get("/", async (req, res) => {
   const users = await userService.load();
-  res.render("users", { users });
+  res.send(users)
+  // res.render("users", { users });
 });
 
 //User Detail
