@@ -10,7 +10,7 @@ export default {
 
 <template lang="pug">
 .about
-  HelloWorld(msg="Hellal Lan")
+  HelloWorld(msg="Hellal Lann")
 </template>
 
 <style>
