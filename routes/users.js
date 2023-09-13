@@ -11,11 +11,12 @@ router.get("/", async (req, res) => {
 });
 
 //User Detail
-router.get("/:id", async (req, res) => {
-  const user = await userService.find(req.params.id);
+router.get("/:userId", async (req, res) => {
+  const user = await userService.find(req.params.userId);
   if (!user) return res.status(404).send("Cannot get user");
   //if(!user.followers) return res.status(404).send('Cannot find followings or followers')
-  res.render("user", { user });
+  // res.render("user", { user });
+  res.send(user)
 });
 
 //Delete Post
