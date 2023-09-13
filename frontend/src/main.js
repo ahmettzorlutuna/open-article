@@ -8,8 +8,8 @@ import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:3000';
 
 //İmport bootstrap
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 // Create a new store instance.
@@ -27,6 +27,10 @@ const store = createStore({
     },
     async fetchUser (ctx, passengerId) {
       const request = await axios.get(`/users/${passengerId}`)
+      return request.data
+    },
+    async deletePost (ctx, postId) {
+      const request = await axios.delete(`/users/posts/${postId}`)
       return request.data
     }
   }
