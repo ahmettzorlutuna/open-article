@@ -6,7 +6,6 @@ class PostService extends BaseService {
     async createPost(userId, name, content){
         const user = await user_service.find(userId);
         const post = user.createPost({name,content})
-        this.insert(post)
         await user.save()
         return post
     }
