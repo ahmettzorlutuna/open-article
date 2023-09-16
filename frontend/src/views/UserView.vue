@@ -29,7 +29,7 @@ export default {
 
 <template lang="pug">
 .user
-    p(v-if="isLoading") PleaseWait...
+    p(v-if="isLoading") PleaseWait......
     div(v-else)
         .page-detail-baslik
             h1 Welcome User Detail Page
