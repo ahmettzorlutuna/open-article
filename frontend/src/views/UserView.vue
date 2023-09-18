@@ -34,7 +34,7 @@ export default {
         .page-detail-baslik
             h1 Welcome User Detail Page
         .user-detail-baslik
-            h1 {{ user.username }}'s article
+            h1 {{ user.username }}'s articleee
         h2 Following: {{ user.following.length }}
         h2 Followers: {{ user.followers.length }}
         ul
