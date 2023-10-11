@@ -3,39 +3,40 @@
 export default{
   name: 'HelloWorld',
   props: {
-    msg: {
+    theme: {
       type: String,
-      required: true
+      required: false,
+      default: 'dark'
     }
   }
 }
 </script>
 
 <template lang="pug">
-.users
-  h1 {{ msg }}
+div.hello(:class="{red: theme === 'red'}")
+  div.actions
+    slot(name="links")
 </template>
 
-<style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -20px;
+<style>
+.hello .actions a{
+  padding: 8px;
+  border: 1px solid #eee;
+  border: 4px;
+  border-color: black;
+  text-decoration: none;
+  margin: 10px;
 }
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
+.hello .actions {
   text-align: center;
+  margin: 30px 0 10px 0;
 }
+.hello{
+  width: 400px;
+  padding: 20px;
+  margin: 100px auto;
+  background: white;
+  border-radius: 10px;
 
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
 }
 </style>
