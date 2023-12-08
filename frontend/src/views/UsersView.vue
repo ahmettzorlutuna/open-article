@@ -1,7 +1,6 @@
 <script>
 import { mapActions } from 'vuex';
 
-import HelloWorld from '@/components/HelloWorld.vue'
 export default {
   name: 'UsersView',
   data() {
@@ -20,7 +19,6 @@ export default {
     }
   },
   components: {
-    HelloWorld
   },
   methods: {
     ...mapActions(['fetchUsers'])
@@ -30,7 +28,6 @@ export default {
 
 <template lang="pug">
 .home
-  HelloWorld(msg="Welcome To Users Page")
   p(v-if="errMessage") {{ errMessage }}
   p(v-else-if="isLoading") Please wait...
   div(v-else)
