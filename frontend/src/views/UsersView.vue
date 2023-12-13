@@ -1,40 +1,34 @@
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
+import UserList from "../components/UserList.vue";
 
 export default {
-  name: 'UsersView',
+  name: "UsersView",
   data() {
     return {
       users: [],
-      isLoading: true
-    }
+      isLoading: true,
+      errMessage: "",
+    };
   },
   async mounted() {
     try {
-      this.users = await this.fetchUsers()
+      this.users = await this.fetchUsers();
     } catch (e) {
-      this.errMessage = e.message
-    }finally{
-      this.isLoading = false
+      this.errMessage = e.message;
+    } finally {
+      this.isLoading = false;
     }
   },
   components: {
+    UserList,
   },
   methods: {
-    ...mapActions(['fetchUsers'])
+    ...mapActions(["fetchUsers"]),
   }
-}
+};
 </script>
 
-<template lang="pug">
-.home
-  p(v-if="errMessage") {{ errMessage }}
-  p(v-else-if="isLoading") Please wait...
-  div(v-else)
-    p There are {{ users.length }} user in sitee. 
-    ol
-      li(
-        v-for="user in users"
-        :key="user.name")
-        a(:href="`/users/${user._id}`") {{ user.username }} 
-</template> 
+<template>
+  <UserList :users="users" :isLoading="isLoading" :errMessage="errMessage" />
+</template>
