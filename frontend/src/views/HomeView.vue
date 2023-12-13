@@ -1,35 +1,32 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <p>
-      Before lets get started i want to tell you something about our new web
-      site. I hope you like it.
-    </p>
-    <input type="text" v-model="message">
-    <button @click="handleClick">Click</button>
-    <h1>{{ ahmet }}</h1>
-    <button @click="handleClick2">Click</button>
+    <input type="text" v-model="search">
+    <p v-for="name in filteredNames" :key="name"> {{ name }}</p>
+    <button @click="stopWatch">Durdur</button>
   </div>
 </template>
 
 <script>
-import { ref,reactive } from "vue";
+import { ref,reactive, computed, watch, watchEffect } from "vue";
 export default {
   name: "home",
   setup() {
-    const message = ref("Hello World");
-    let ahmet = ref('ahmet')
+    const search = ref('')
+    const names = ref(['Ahmet','mehmet','cart','curt','laa','nettinn','söleee'])
 
-    console.log(message)
-    function handleClick() {
-      message.value = "Oh noooooo!";
-    }
+    const stopWatch = watch(search, (search, prevSearch) => {
+      console.log("Ahmet")
+    })
 
-    function handleClick2() {
-      ahmet.value = "Ahmet yeni kişi";
-    }
+    // const stopWatchEffect = watchEffect(() => {
+    //   console.log('Hello World',search.value)
+    // })
 
-    return { message, handleClick, ahmet, handleClick2};
+
+    const filteredNames = computed(() => {
+      return names.value.filter(name => name.includes(search.value))
+    })
+    return { names, search, filteredNames, stopWatch };
   },
 };
 </script>
