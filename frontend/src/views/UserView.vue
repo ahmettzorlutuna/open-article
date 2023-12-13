@@ -27,37 +27,35 @@ export default {
 }
 </script>
 
-<template lang="pug">
-.user
-    p(v-if="isLoading") PleaseWait......
-    div(v-else)
-        .page-detail-baslik
-            h1 Welcome User Detail Page
-        .user-detail-baslik
-            h1 {{ user.username }}'s articleee
-        h2 Following: {{ user.following.length }}
-        h2 Followers: {{ user.followers.length }}
-        ul
-            li(
-                v-for="follower in user.followers"
-                :key="follower.username")
-                a(:href="`/users/${follower._id}`") {{ follower.username }}
-        ul
-            li(
-                v-for="following in user.following"
-                :key="following._id")
-                a(:href="`/users/${following._id}`") {{ following.username }}
-        .makale-baslik
-            h1 Makaleler
-        .articles
-        ul    
-        li(
-            v-for="post in user.posts"
-            :key="post.name")
-            a(:href="`/users/article/${post._id}`") {{ post.name }}
-            h1 {{ post.content }}
-            .btn.btn-outline-success.remove(@click="removePost(post._id)") Remove
-
+<template>
+<div class="user">
+    <p v-if="isLoading">PleaseWait......</p>
+    <div v-else>
+        <div class="page-detail-baslik">
+            <h1>Welcome User Detail Page</h1>
+        </div>
+        <div class="user-detail-baslik">
+            <h1>{{ user.username }}'s articleee</h1>
+        </div>
+        <h2>Following: {{ user.following.length }}</h2>
+        <h2>Followers: {{ user.followers.length }}</h2>
+        <ul>
+            <li v-for="follower in user.followers" :key="follower.username"><a :href="`/users/${follower._id}`">{{ follower.username }}</a></li>
+        </ul>
+        <ul>
+            <li v-for="following in user.following" :key="following._id"><a :href="`/users/${following._id}`">{{ following.username }}</a></li>
+        </ul>
+        <div class="makale-baslik">
+            <h1>Makaleler</h1>
+        </div>
+        <div class="articles"></div>
+        <ul> </ul>
+        <li v-for="post in user.posts" :key="post.name"><a :href="`/users/article/${post._id}`">{{ post.name }}</a>
+            <h1>{{ post.content }}</h1>
+            <div class="btn btn-outline-success remove" @click="removePost(post._id)">Remove</div>
+        </li>
+    </div>
+</div>
 </template>
 
 <style scoped>
