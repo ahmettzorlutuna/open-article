@@ -1,0 +1,23 @@
+<template>
+  <div class="home">
+    <p v-if="errMessage">{{ errMessage }}</p>
+    <p v-else-if="isLoading">Please wait...</p>
+    <div v-else>
+      <p>There are {{ users.length }} user in sitee.</p>
+      <ol>
+        <li v-for="user in users" :key="user.name">
+          <SingleUser :user="user" />
+        </li>
+      </ol>
+    </div>
+  </div>
+</template>
+<script>
+import SingleUser from "./SingleUser.vue";
+export default {
+  props: ["users", "isLoading", "errMessage"],
+  components: { SingleUser },
+};
+</script>
+
+<style></style>
