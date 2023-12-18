@@ -17,6 +17,6 @@ export default {
 <style>
 p,a{
     display: inline;
-    margin: 0 10px 10px 0;
+    margin: 0 11px 11px 0;
 }
 </style>
