@@ -1,34 +1,22 @@
 <template>
-  <div class="home">
-    <input type="text" v-model="search">
-    <p v-for="name in filteredNames" :key="name"> {{ name }}</p>
-    <button @click="stopWatch">Durdur</button>
-  </div>
+  <UserList :users="users" :isLoading="isLoading" :errMessage="errMessage" />
 </template>
 
-<script>
-import { ref,reactive, computed, watch, watchEffect } from "vue";
-export default {
-  name: "home",
-  setup() {
-    const search = ref('')
-    const names = ref(['Ahmet','mehmet','cart','curt','laa','nettinn','söleee'])
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import { useStore } from "vuex";
+import UserList from "@/components/UserList.vue";
 
-    const stopWatch = watch(search, (search, prevSearch) => {
-      console.log("Ahmet")
-    })
+const store = useStore();
 
-    // const stopWatchEffect = watchEffect(() => {
-    //   console.log('Hello World',search.value)
-    // })
+const users = computed(() => store.state.users);
+const errMessage = computed(() => store.state.errMessage);
+const isLoading = computed(() => store.state.isLoading);
 
+onMounted(() => {
+  console.log('.')
+})
 
-    const filteredNames = computed(() => {
-      return names.value.filter(name => name.includes(search.value))
-    })
-    return { names, search, filteredNames, stopWatch };
-  },
-};
 </script>
 
 <style></style>
