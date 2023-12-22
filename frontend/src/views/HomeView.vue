@@ -14,9 +14,8 @@ const errMessage = computed(() => store.state.errMessage);
 const isLoading = computed(() => store.state.isLoading);
 
 onMounted(() => {
-  console.log('.')
+  store.dispatch('fetchUsers')
 })
-
 </script>
 
 <style></style>
