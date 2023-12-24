@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="centered">
     <a :href="`/users/${user._id}`">{{ user.username }} </a>
     <p>Followers..:</p>
     <p>{{ user.followers.length }}</p>
@@ -15,8 +15,10 @@ export default {
 </script>
 
 <style>
-p,a{
-    display: inline;
-    margin: 0 11px 11px 0;
+.centered{
+  background-color:cornflowerblue;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 </style>
