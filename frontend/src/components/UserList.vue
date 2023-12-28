@@ -3,11 +3,11 @@
     <p v-if="errMessage">{{ errMessage }}</p>
     <p v-else-if="isLoading">Please wait...</p>
     <div v-else>
-      <p>There are {{ users.length }} user in sitee.</p>
+      <!-- <p>There are {{ users.length }} user in sitee.</p> -->
       <ol>
-        <li v-for="user in users" :key="user.name">
+        <div v-for="user in users" :key="user.name">
           <SingleUser :user="user" />
-        </li>
+        </div>
       </ol>
     </div>
   </div>
