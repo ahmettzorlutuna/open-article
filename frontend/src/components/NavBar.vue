@@ -2,10 +2,10 @@
   <nav class="myNav">
     <ul>
       <div class="items-left">
-        <h1>OpenArticle.com</h1>
+        <li><router-link to="/">OpenArticle.com</router-link></li>
       </div>
-      <li><a href="">Popular</a></li>
-      <li><a href="">Users</a></li>      
+      <li><router-link to="/popular">Popular</router-link></li>
+      <li><router-link to="/users">Users</router-link></li>      
       <li><a href="">Contact</a></li>
       <div class="items-right">
         <li><a href="">Profile</a></li>
@@ -25,6 +25,7 @@ export default {
 
 <style>
 .myNav {
+  text-align: center;
   display: block;
   height: 60px;
   float: none;
@@ -51,7 +52,7 @@ export default {
   float: left;
 }
 
-.items-left h1{
+.items-left li{
   line-height: 60px;
   padding: 0 0 0 10px;
 }
