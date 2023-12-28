@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import UsersView from '../views/UsersView.vue'
 import UserView from '../views/UserView.vue'
+import PopularView from '@/views/PopularView.vue'
 
 
 const routes = [
@@ -19,7 +20,13 @@ const routes = [
     path: '/users/:userId',
     name: 'user',
     component: UserView
+  },
+  {
+    path: '/popular',
+    name: 'popular',
+    component: PopularView
   }
+
   // {
   //   path: '/about',
   //   name: 'about',
