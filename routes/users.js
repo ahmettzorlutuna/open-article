@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const {userService, postService, commentService} = require("../services");
-
+const { userService, postService, commentService } = require("../services");
 
 //Users
 router.get("/", async (req, res) => {
   const users = await userService.load();
-  res.send(users)
+  res.send(users);
   // res.render("users", { users });
 });
 
@@ -16,15 +15,15 @@ router.get("/:userId", async (req, res) => {
   if (!user) return res.status(404).send("Cannot get user");
   //if(!user.followers) return res.status(404).send('Cannot find followings or followers')
   // res.render("user", { user });
-  res.send(user)
+  res.send(user);
 });
 
 //Delete Post
-router.delete("/posts/:postId", async(req,res) => {
-  const {postId} = req.params.postId
-  const post = await postService.removePostById(postId)
-  return post
-})
+router.delete("/posts/:postId", async (req, res) => {
+  const { postId } = req.params.postId;
+  const post = await postService.removePostById(postId);
+  return post;
+});
 
 //Delete User
 router.delete("/:userId", async (req, res) => {
@@ -34,7 +33,16 @@ router.delete("/:userId", async (req, res) => {
 
 //New User
 router.post("/", async (req, res) => {
-  await userService.insert(req.body);
+  const { key, value } = req.body;
+  // await userService.checkUserAndInsert(
+  //   key,
+  //   value,
+  //   req.body
+  // );
+  const existingUser = await userService.findBy(key,value)
+  if(!existingUser){
+    await userService.insert(req.body)
+  }
   res.send("Ok");
 });
 
@@ -51,7 +59,7 @@ router.post("/:userId", async (req, res) => {
 router.post("/follow/:userId", async (req, res) => {
   const { userId } = req.params;
   const { userId2 } = req.body;
-  userService.followUser(userId,userId2);
+  userService.followUser(userId, userId2);
   res.send("Ok");
 });
 
@@ -65,11 +73,16 @@ router.get("/article/:postId", async (req, res) => {
 //Comment Post
 router.post("/comment/:userId", async (req, res) => {
   const { userId } = req.params;
-  const {postId, commentName, commentContent} = req.body
-  
-  const comment = await commentService.makeComment(postId, userId, commentName, commentContent);
+  const { postId, commentName, commentContent } = req.body;
+
+  const comment = await commentService.makeComment(
+    postId,
+    userId,
+    commentName,
+    commentContent
+  );
   // const result = userService.updatePostById(post._id, post)
-  console.log("ok")
+  console.log("ok");
   res.send(comment);
 });
 
@@ -77,7 +90,7 @@ router.post("/comment/:userId", async (req, res) => {
 router.post("/like/:userId", async (req, res) => {
   const { userId } = req.params;
   const { postId } = req.body;
-  
+
   const post = postService.likePost(userId, postId);
   res.send(post);
 });
@@ -86,7 +99,7 @@ router.post("/like/:userId", async (req, res) => {
 router.post("/dislike/:userId", async (req, res) => {
   const { userId } = req.params;
   const { postId } = req.body;
-  
+
   const post = postService.dislikePost(userId, postId);
   res.send(post);
 });
