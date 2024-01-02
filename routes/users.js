@@ -34,11 +34,6 @@ router.delete("/:userId", async (req, res) => {
 //New User
 router.post("/", async (req, res) => {
   const { key, value } = req.body;
-  // await userService.checkUserAndInsert(
-  //   key,
-  //   value,
-  //   req.body
-  // );
   const existingUser = await userService.findBy(key,value)
   if(!existingUser){
     await userService.insert(req.body)
