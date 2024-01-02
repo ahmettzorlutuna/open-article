@@ -9,10 +9,13 @@ class UserService extends BaseService{
         await user.save();
         await user2.save();
     }
-    async checkUserAndInsert(key,value,userData){
-        const existingUser = await this.find(key,value)
+    async checkUserAndInsert(key,value,userData){ //Written for new user post
+        const existingUser = await this.findBy(key,value)
         if(!existingUser){
             await this.insert(userData)
+            return true
+        }else{
+            return false
         }
     }
 }
