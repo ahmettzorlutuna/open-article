@@ -33,12 +33,18 @@ router.delete("/:userId", async (req, res) => {
 
 //New User
 router.post("/", async (req, res) => {
-  const { key, value } = req.body;
-  const existingUser = await userService.findBy(key,value)
-  if(!existingUser){
-    await userService.insert(req.body)
+  try {
+    const existingUser = await userService.checkUserAndInsert('username',req.body.username,req.body)
+    if(existingUser){
+      res.send("Inserted successfuly.")
+    }else{
+      res.send("User exist.")
+    }
+  } catch (error) {
+    console.error(error);
+    res.send("Internal server error!")
   }
-  res.send("Ok");
+  
 });
 
 //New post
