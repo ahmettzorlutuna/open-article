@@ -1,4 +1,5 @@
 <template>
+  <h1>Welcome to Home Page</h1>
   <UserList :users="users" :isLoading="isLoading" :errMessage="errMessage" />
 </template>
 
@@ -18,4 +19,8 @@ onMounted(() => {
 })
 </script>
 
-<style></style>
+<style scoped>
+h1{
+  text-align: center;
+}
+</style>
