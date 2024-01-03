@@ -1,5 +1,5 @@
 <template>
-  <h1>Welcome to Home Page</h1>
+  <h1>Articles</h1>
   <UserList :users="users" :isLoading="isLoading" :errMessage="errMessage" />
 </template>
 
