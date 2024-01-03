@@ -50,10 +50,10 @@ export default {
         </div>
         <div class="articles"></div>
         <ul> </ul>
-        <li v-for="post in user.posts" :key="post.name"><a :href="`/users/article/${post._id}`">{{ post.name }}</a>
-            <h1>{{ post.content }}</h1>
-            <div class="btn btn-outline-success remove" @click="removePost(post._id)">Remove</div>
-        </li>
+        <h1 v-for="post in user.posts" :key="post.name">{{ post.name }}
+            <p>{{ post.content }}</p>
+            <button class="btn btn-outline-success remove" @click="removePost(post._id)">Remove</button>
+        </h1>
     </div>
 </div>
 </template>
