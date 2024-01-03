@@ -44,7 +44,6 @@ router.post("/", async (req, res) => {
     console.error(error);
     res.send("Internal server error!")
   }
-  
 });
 
 //New post
@@ -52,8 +51,8 @@ router.post("/:userId", async (req, res) => {
   const { name, content } = req.body;
   const { userId } = req.params;
 
-  const newPost = await postService.createPost(userId, name, content);
-  res.send(newPost);
+  await postService.createPost(userId, name, content);
+  res.send("ok");
 });
 
 //Follow
