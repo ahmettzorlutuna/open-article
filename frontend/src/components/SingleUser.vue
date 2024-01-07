@@ -1,25 +1,22 @@
 <template>
       <article v-for="post in user.posts" class="card-container">
-        <h1 id="user-name"><a :href="`/users/${user._id}`">{{ user.username }} </a></h1>
-        <p id="post-name"><a :href="`/users/article/${post._id}`">{{ post.name }}</a></p>
-        <p id="post-content">{{ post.content }}</p>
+        <p id="user-name"><a :href="`/users/${user._id}`">{{ user.username }} </a></p>
+        <h2 id="post-name"><a :href="`/users/article/${post._id}`">{{ post.name }}</a></h2>
+        <p id="post-content">{{ truncateContent(post.content) }}</p>
         <span id="created-date">Created date <span >{{ post.createdDate}}</span></span>
         <hr class="card-line">
       </article>
 </template>
 
-<script>
-export default {
-  props: ["user"],
-  computed: {
-    shortenPostContent(){
-      return this.post.content.splice(0,10)
-    }
-  },
-  mounted() {
-    shortenPostContent()
-  },
-};
+<script setup>
+import {computed} from 'vue'
+const props = defineProps(['user'])
+
+
+const truncateContent = computed(() => {
+  return (content) => content.slice(0,280) + " ..."
+})
+
 </script>
 
 <style scoped>
@@ -33,6 +30,7 @@ export default {
   margin: 5px 20px 40px 20px;
   position: relative;
   font-family: 'Arial', sans-serif;
+  margin: auto; /* Center Div */
 }
 .card-line{
   width: var(--cards-width);
@@ -46,12 +44,15 @@ export default {
 }
 #user-name{
   flex-grow: 1;
+  margin: 10px 0 0 0;
 }
 #post-name{
   flex-grow: 1;
+  letter-spacing: 0;
 }
 #post-content{
   flex-grow: 2;
+  font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 #created-date{
   flex-grow: 1;
