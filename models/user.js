@@ -8,33 +8,19 @@ const UserSchema = new mongoose.Schema({
     minLength: 3
   },
   posts: [{
-    name: {
-      type: String,
-      required: true,
-      minLength: 5
-    },
-    content: {
-      type: String,
-      required: true,
-      minLength: 10
-    },
-    comment: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
-      },
-    ],
-    likes: { type: Number, default: 0 },
-    dislikes: { type: Number, default: 0 },
-    createdDate: { type: Number, default: (new Date()).getFullYear() }
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post',
+    autopopulate: true
 }],
   following: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    autopopulate: true
 }],
   followers: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    autopopulate: true
 }],
   messages: [],
 });
