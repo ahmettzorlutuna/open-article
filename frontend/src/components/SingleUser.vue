@@ -1,7 +1,7 @@
 <template>
       <article v-for="post in user.posts" class="card-container">
         <p id="user-name"><a :href="`/users/${user._id}`">{{ user.username }} </a></p>
-        <h2 id="post-name"><a :href="`/users/article/${post._id}`">{{ post.name }}</a></h2>
+        <h2 id="post-name"><a :href="`/posts/${post._id}`">{{ post.name }}</a></h2>
         <p id="post-content">{{ truncateContent(post.content) }}</p>
         <span id="created-date">Created date <span >{{ post.createdDate}}</span></span>
         <hr class="card-line">
@@ -19,7 +19,7 @@ const truncateContent = computed(() => {
 
 </script>
 
-<style scoped>
+<style>
 .card-container{
   display: flex;
   flex-flow: column;
