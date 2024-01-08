@@ -14,12 +14,13 @@ const PostSchema = new mongoose.Schema({
   comment: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment'
+      ref: 'Comment',
+      autopopulate: true
     },
   ],
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
-  createdDate: Date
+  createdDate:  {type: Date, default: Date.now},
 });
 
 PostSchema.plugin(require('mongoose-autopopulate'));
