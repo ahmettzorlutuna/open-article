@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import UsersView from '../views/UsersView.vue'
 import UserView from '../views/UserView.vue'
 import PopularView from '@/views/PopularView.vue'
+import PostDetailView from '../views/PostDetailView.vue'
 
 
 const routes = [
@@ -25,7 +26,13 @@ const routes = [
     path: '/popular',
     name: 'popular',
     component: PopularView
+  },
+  {
+    path: '/posts/:postId',
+    name: 'posts',
+    component: PostDetailView
   }
+
 
   // {
   //   path: '/about',
