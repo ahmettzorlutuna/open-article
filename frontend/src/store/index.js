@@ -38,6 +38,10 @@ export default createStore({
       const request = await axios.get(`/users/${passengerId}`);
       return request.data;
     },
+    async fetchPost(ctx, postId){
+      const request = await axios.get(`/posts/${postId}`);
+      return request.data;
+    },
     async deletePost(ctx, postId) {
       const request = await axios.delete(`/users/posts/${postId}`);
       return request.data;
