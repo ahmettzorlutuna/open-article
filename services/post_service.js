@@ -8,6 +8,7 @@ class PostService extends BaseService {
     user.populate('posts')
     const post = await user.createPost({ name, content });
     await user.save();
+    await post.save();
     return post;
   }
 
