@@ -3,7 +3,7 @@
         <p id="user-name"><a :href="`/users/${user._id}`">{{ user.username }} </a></p>
         <h2 id="post-name"><a :href="`/posts/${post._id}`">{{ post.name }}</a></h2>
         <p id="post-content">{{ truncateContent(post.content) }}</p>
-        <span id="created-date">Created date <span >{{ post.createdDate}}</span></span>
+        <span id="created-date">Created date <span >{{ post.date}}</span></span>
         <hr class="card-line">
       </article>
 </template>
@@ -11,7 +11,6 @@
 <script setup>
 import {computed} from 'vue'
 const props = defineProps(['user'])
-
 
 const truncateContent = computed(() => {
   return (content) => content.slice(0,280) + " ..."
