@@ -3,7 +3,7 @@
     <!-- <p id="user-name"><a :href="`/users/${user._id}`">{{ post.username }} </a></p> -->
     <h2 id="post-name">{{ post.name }}</h2>
     <p id="post-content">{{ post.content }}</p>
-    <span id="created-date">{{ truncateDate }}</span>
+    <span id="created-date">{{ post.date }}</span>
     <hr class="card-line" />
   </article>
 </template>
@@ -32,11 +32,15 @@ export default {
     ...mapActions(["fetchPost"]),
     async updatePost() {
       this.post = await this.fetchPost(this.$route.params.postId);
-    },
+    }
   },
   computed: {
     truncateDate() {
-      return parseInt(this.post.createdDate)
+      return this.post.date.slice(0,5)
+    },
+    formatDate(){
+      var d = this.post.date.getDate();
+      return d
     },
   },
 };
