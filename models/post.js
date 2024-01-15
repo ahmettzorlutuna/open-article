@@ -1,28 +1,29 @@
 const mongoose = require("mongoose");
+const moment = require('moment');
 
 const PostSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minLength: 5
+    minLength: 5,
   },
   content: {
     type: String,
     required: true,
-    minLength: 10
+    minLength: 10,
   },
   comment: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment',
-      autopopulate: true
+      ref: "Comment",
+      autopopulate: true,
     },
   ],
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
-  createdDate:  {type: Date, default: Date.now},
+  date: { type: Date, default: Date.now},
 });
 
-PostSchema.plugin(require('mongoose-autopopulate'));
+PostSchema.plugin(require("mongoose-autopopulate"));
 
 module.exports = mongoose.model("Post", PostSchema);
