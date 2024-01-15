@@ -1,9 +1,9 @@
 <template>
       <article v-for="post in user.posts" class="card-container">
-        <p id="user-name"><a :href="`/users/${user._id}`">{{ user.username }} </a></p>
+        <p id="user-name"><a :href="`/users/${user._id}`">From {{ user.username }} </a></p>
         <h2 id="post-name"><a :href="`/posts/${post._id}`">{{ post.name }}</a></h2>
-        <p id="post-content">{{ truncateContent(post.content) }}</p>
-        <span id="created-date">Created date <span >{{ post.date}}</span></span>
+        <p id="post-content"><a :href="`/posts/${post._id}`">{{ truncateContent(post.content) }}</a></p>
+        <span id="created-date">Created date <span >{{ formatDate(post.date) }}</span></span>
         <hr class="card-line">
       </article>
 </template>
@@ -16,9 +16,23 @@ const truncateContent = computed(() => {
   return (content) => content.slice(0,280) + " ..."
 })
 
+
+function formatDate(date){
+  if(!date){
+        return "";
+      }
+
+      const formattedDate = new Date(date);
+
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      return formattedDate.toLocaleDateString("en-US", options);
+}
+
+
+
 </script>
 
-<style>
+<style scoped>
 .card-container{
   display: flex;
   flex-flow: column;
@@ -43,7 +57,7 @@ const truncateContent = computed(() => {
 }
 #user-name{
   flex-grow: 1;
-  margin: 10px 0 0 0;
+  margin: 2.4vw 0 0 0;
 }
 #post-name{
   flex-grow: 1;
