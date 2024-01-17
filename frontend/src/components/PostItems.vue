@@ -26,11 +26,15 @@ export default {};
   height: 2.5vw;
 }
 .post-items-left{
-  display: flex;
   justify-content: flex-end;
 }
 .post-items-right{
-  display: flex;
   justify-content: flex-end;
+}
+
+.post-items-left, .post-items-right{
+  display: flex;
+  gap: 1.5vw;
+  margin: 0 1.4vw 0;
 }
 </style>
