@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import UsersView from '../views/UsersView.vue'
-import UserView from '../views/UserView.vue'
+import UserProfileView from '../views/UserProfileView.vue'
 import PopularView from '@/views/PopularView.vue'
 import PostDetailView from '../views/PostDetailView.vue'
 
@@ -18,9 +18,9 @@ const routes = [
     component: UsersView
   },
   {
-    path: '/users/:userId',
+    path: '/users/profile/:userId',
     name: 'user',
-    component: UserView
+    component: UserProfileView
   },
   {
     path: '/popular',
