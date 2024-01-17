@@ -74,8 +74,25 @@ export default {
 #remove-button {
   display: flex;
   justify-content: center;
+  text-align: center;
+  line-height: 40px;
+  margin: 0 0 3vw 0;
   width: 90px;
-  margin: 0 0 2vw 0;
+  height: 40px;
+  background-color: rgb(26, 140, 22);
+  border: none;
+  /* perfect radius */
+  border-top-left-radius: 99em;
+  border-top-right-radius: 99em;
+  border-bottom-right-radius: 99em;
+  border-bottom-left-radius: 99em;
+  /* perfect radius */
+  color: white;
+  cursor: pointer;
+}
+
+#remove-button:hover{
+  background-color: rgb(22, 118, 18);
 }
 
 #post-name {
