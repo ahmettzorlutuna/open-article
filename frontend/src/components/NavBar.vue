@@ -14,7 +14,6 @@
       </div>
     </ul>
   </nav>
-  <hr>
 </template>
 
 <script>
@@ -31,6 +30,9 @@ export default {
   float: none;
   overflow: hidden;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(242, 242, 242);
 }
 .myNav ul {
   list-style: none;
