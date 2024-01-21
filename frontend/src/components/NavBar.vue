@@ -5,9 +5,10 @@
         <li><router-link to="/">OpenArticle.com</router-link></li>
       </div>
       <li><router-link to="/popular">Popular</router-link></li>
-      <li><router-link to="/users">Users</router-link></li>      
+      <li><router-link to="/users">Posts</router-link></li>      
       <li><a href="">Contact</a></li>
       <div class="items-right">
+        <li><router-link to="/users/profile/659d9fab11ab288893ff7c9e">Profile test</router-link></li>
         <li><a href="">Profile</a></li>
         <li><a href="">Login</a></li>
         <li><a href="">Sign up</a></li>
