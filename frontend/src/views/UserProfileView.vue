@@ -1,6 +1,8 @@
 <script>
 import { mapActions } from "vuex";
 import SingleUserPost from "../components/SingleUserPost.vue";
+import UserProfileLeft from "@/components/UserProfileLeft.vue";
+import UserProfileRight from "@/components/UserProfileRight.vue";
 
 export default {
   name: "UserView",
@@ -26,6 +28,8 @@ export default {
   },
   components: {
     SingleUserPost,
+    UserProfileLeft,
+    UserProfileRight
   },
 };
 </script>
@@ -34,10 +38,14 @@ export default {
   <div class="user">
     <div class="user-profile">
       <main class="profile-left">
-          <SingleUserPost :user="user" />
+        <h1>
+          <!-- {{ user.username }} -->
+          <UserProfileLeft :user="user" />
+        </h1>
+        <SingleUserPost :user="user" />
       </main>
       <div class="profile-right">
-        <h3>Ulaaaaa nasiiiii</h3>
+        <UserProfileRight :user="user" />
       </div>
     </div>
   </div>
@@ -58,10 +66,6 @@ export default {
   .profile-left {
     min-width: 728px;
     max-width: 728px;
-    flex-grow: 1;
-    flex-basis: 1;
-    flex-shrink: auto;
-    display: block;
   }
   .profile-right {
     min-width: 368px;
@@ -75,4 +79,5 @@ export default {
     box-sizing: border-box;
   }
 }
+
 </style>
