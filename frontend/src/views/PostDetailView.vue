@@ -5,7 +5,6 @@
     <p id="post-content">{{ post.content }}</p>
     <span id="created-date">{{ formatDate(post.date) }}</span>
     <button id="remove-button">Delete</button>
-    <hr class="card-line" />
   </article>
 </template>
 
@@ -57,7 +56,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card-container:not(#remove-button) {
   display: flex;
   flex-flow: column;
@@ -69,6 +68,9 @@ export default {
   position: relative;
   font-family: "Arial", sans-serif;
   margin: auto; /* Center Div */
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(242, 242, 242);
 }
 
 #remove-button {
