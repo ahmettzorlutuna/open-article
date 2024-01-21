@@ -1,12 +1,12 @@
 <template>
-  <h1>Articles</h1>
-  <UserList :users="users" :isLoading="isLoading" :errMessage="errMessage" />
+  <h1>Welcom to Home Page !</h1>
+  <!-- <PostsList :users="users" :isLoading="isLoading" :errMessage="errMessage" /> -->
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
-import UserList from "@/components/UserList.vue";
+import PostsList from "@/components/PostsList.vue";
 
 const store = useStore();
 
