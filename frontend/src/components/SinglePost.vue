@@ -1,10 +1,12 @@
 <template>
       <article v-for="post in user.posts" class="card-container">
-        <p id="user-name"><a :href="`/users/profile/${user._id}`">From {{ user.username }} </a></p>
-        <h2 id="post-name"><a :href="`/posts/${post._id}`">{{ post.name }}</a></h2>
+        <div class="created-date">
+          <p id="user-name"><a :href="`/users/profile/${user._id}`">From {{ user.username }} </a></p>
+          <p>·</p>
+          <p id="post-date">{{ formatDate(post.date) }}</p>
+        </div>
+        <h1 id="post-name"><a :href="`/posts/${post._id}`">{{ post.name }}</a></h1>
         <p id="post-content"><a :href="`/posts/${post._id}`">{{ truncateContent(post.content) }}</a></p>
-        <span id="created-date">Created date <span >{{ formatDate(post.date) }}</span></span>
-        <hr class="card-line">
       </article>
 </template>
 
@@ -34,41 +36,30 @@ function formatDate(date){
 
 <style scoped>
 .card-container{
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  --cards-width: 728px;
-  width: var(--cards-width);
-  min-height: 244px;
-  margin: 5px 20px 40px 20px;
-  position: relative;
-  font-family: 'Arial', sans-serif;
-  margin: auto; /* Center Div */
-}
-.card-line{
-  width: var(--cards-width);
-  bottom: 0;
-  border: 1px solid rgb(242, 242, 242);
-  position: absolute;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(242, 242, 242);
 }
 .card-container a{
   text-decoration: none;
   color: black;
 }
 #user-name{
-  flex-grow: 1;
-  margin: 2.4vw 0 0 0;
+  margin-right: 5px;
+}
+#post-date{
+  margin-left: 5px;
 }
 #post-name{
-  flex-grow: 1;
-  letter-spacing: 0;
+  font-size: 25px;
 }
 #post-content{
-  flex-grow: 2;
   font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 20px;
 }
-#created-date{
-  flex-grow: 1;
+.created-date{
+  color: gray;
+  display: flex;
 }
 
 </style>
