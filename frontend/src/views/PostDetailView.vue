@@ -1,9 +1,12 @@
 <template>
   <article class="card-container">
     <h2 id="post-name">{{ post.name }}</h2>
+    <div class="profile-detail-header">
+      <span>{{ calculateMinute(post.content) }} min read </span>
+      <span id="created-date">{{ formatDate(post.date) }}</span>
+    </div>
     <PostItems />
     <p id="post-content">{{ post.content }}</p>
-    <span id="created-date">{{ formatDate(post.date) }}</span>
     <button id="remove-button">Delete</button>
   </article>
 </template>
@@ -44,10 +47,16 @@ export default {
       const options = { year: "numeric", month: "long", day: "numeric" };
       return formattedDate.toLocaleDateString("en-US", options);
     },
+    calculateMinute(content) {
+      if (!content) {
+        return 0;
+      }
+      return Math.round(content.split(" ").length / 240);
+    },
   },
   computed: {
-    truncateDate() {
-      return this.post ? this.formatDate(this.post.date) : "";
+    readingMinute() {
+      return this.calculateMinute(this.post.content);
     },
   },
   components: {
@@ -93,7 +102,7 @@ export default {
   cursor: pointer;
 }
 
-#remove-button:hover{
+#remove-button:hover {
   background-color: rgb(22, 118, 18);
 }
 
@@ -113,7 +122,10 @@ export default {
 }
 
 #created-date {
-  margin: 0 0 2vh;
+  margin: 0 10px 2vh;
   color: gray;
+}
+.profile-detail-header {
+  display: flex;
 }
 </style>
