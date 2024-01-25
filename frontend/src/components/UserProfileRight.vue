@@ -3,7 +3,8 @@
     <div class="items">
       <div class="photo">
       </div>
-      <span>{{ user.username }}</span>
+      <h2 class="profile-username">{{ user.username }}</h2>
+      <p class="edit-profile"><a href="">Edit profile</a></p>
     </div>
   </div>
 </template>
@@ -36,5 +37,14 @@ export default {
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
   background-color: black;
+}
+a{
+  color: rgb(0, 125, 21);
+  text-decoration: none;
+}
+
+.profile-username{
+  margin-top: 30px;
+  font-weight: 500;
 }
 </style>
