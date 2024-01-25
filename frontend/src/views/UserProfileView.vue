@@ -80,4 +80,25 @@ export default {
   }
 }
 
+@media (min-width: 552px) and (max-width: 727.98px){
+  .profile-right{
+    display: none;
+  }
+}
+
+@media (min-width: 728px) and (max-width: 903.98px){
+  .profile-right{
+    display: none;
+  }
+}
+
+@media (min-width: 904px) and (max-width: 1079.98px){
+  .profile-right{
+    display: none;
+  }
+}
+
+
+
+
 </style>
