@@ -43,7 +43,7 @@ function formatDate(date) {
 .user-post {
   padding: 10px;
   margin: 5px 0 5px 0;
-  border-bottom-width: 1px;
+  border-bottom-width: 2px;
   border-bottom-style: solid;
   border-bottom-color: rgb(242, 242, 242);
 }
