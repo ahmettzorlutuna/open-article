@@ -3,3 +3,4 @@
 __mocks__
 coverage
 node_modules
+.env
