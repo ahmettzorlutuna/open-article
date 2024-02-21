@@ -4,3 +4,5 @@ __mocks__
 coverage
 node_modules
 .env
+priv_key.pem
+pub_key.pem
