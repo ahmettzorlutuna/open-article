@@ -1,10 +1,15 @@
 const express = require("express");
+
 const bodyParser = require("body-parser");
 const UsersRouter = require("./routes/users");
 const IndexRouter = require("./routes/index");
 const CommentRouter = require("./routes/comments");
 const PostRouter = require("./routes/posts");
+
+const passport = require("passport-jwt");
 const cors = require("cors");
+const path = require("path"); //Accessing file system
+
 require("./mongo-connection");
 
 const app = express();
