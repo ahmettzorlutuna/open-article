@@ -4,6 +4,8 @@ import PostsView from '../views/PostsView.vue'
 import UserProfileView from '../views/UserProfileView.vue'
 import PopularView from '@/views/PopularView.vue'
 import PostDetailView from '../views/PostDetailView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegisterView from '../views/RegisterView.vue'
 
 
 const routes = [
@@ -31,6 +33,16 @@ const routes = [
     path: '/posts/:postId',
     name: 'posts',
     component: PostDetailView
+  },
+  {
+    path: '/user/login/',
+    name: 'userLogin',
+    component: LoginView
+  },
+  {
+    path: '/user/register/',
+    name: 'userRegister',
+    component: RegisterView
   }
 
 
