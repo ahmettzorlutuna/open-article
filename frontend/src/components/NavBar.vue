@@ -10,8 +10,8 @@
       <div class="items-right">
         <li><router-link to="/users/profile/659d9fab11ab288893ff7c9e">Profile test</router-link></li>
         <li><a href="">Profile</a></li>
-        <li><a href="">Login</a></li>
-        <li><a href="">Sign up</a></li>
+        <li><router-link to="/user/login">Login</router-link></li>
+        <li><router-link to="/user/register">Sign up</router-link></li>
       </div>
     </ul>
   </nav>
