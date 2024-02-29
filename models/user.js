@@ -5,8 +5,21 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    minLength: 3
+    minLength: 4,
+    unique: true
   },
+  password: {
+    type: String,
+    required: true,
+    minLength: 8,
+  },
+  email: {
+    type: String,
+    required: false,
+    unique: true
+  },
+  hash: String,
+  salt: String,
   posts: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Post',
