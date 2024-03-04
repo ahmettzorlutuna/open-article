@@ -42,12 +42,12 @@ router.get("/register", (req, re, next) => {});
 router.post("/register", (req, res, next) => {
   const saltHash = utils.genPassword(req.body.password);
 
-  const salt = saltHash.salt;
   const hash = saltHash.hash;
+  const salt = saltHash.salt;
 
   const newUser = new User({
     username: req.body.username,
-    password: salt + hash,
+    password: hash + salt,
     hash: hash,
     salt: salt,
   });
