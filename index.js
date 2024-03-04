@@ -14,7 +14,7 @@ const path = require("path"); //Accessing file system
 require("./mongo-connection");
 
 //Passed global passport library object into the configuration function
-require("./config/passport")(passport);
+require("./auth/passport")(passport);
 
 const app = express();
 
