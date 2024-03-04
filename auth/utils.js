@@ -51,6 +51,8 @@ function issueJWT(user) {
   };
 }
 
+
+
 module.exports.genPassword = genPassword;
 module.exports.validatePassword = validatePassword;
 module.exports.issueJWT = issueJWT;
