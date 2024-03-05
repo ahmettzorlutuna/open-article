@@ -1,9 +1,9 @@
 const moment = require("moment");
 
 module.exports.setLocalStorage = (responseObj) => {
-  const expires = moment().add(responseObj.data.expiresIn);
-
-  localStorage.setItem("token", responseObj.data.token);
+  const expires = moment().add(responseObj.data.token.expires);
+  console.log("responseObj",responseObj.data.token);
+  localStorage.setItem("token", responseObj.data.token.token);
   localStorage.setItem("expires", JSON.stringify(expires.valueOf()));
 };
 
