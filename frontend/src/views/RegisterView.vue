@@ -1,5 +1,5 @@
 <template>
-  <h1>Register Page</h1>
+  <h1>Signup Page</h1>
   <form @submit.prevent="submitForm()">
     <h2>Signup to app</h2>
     <label for="username">Username:</label>
