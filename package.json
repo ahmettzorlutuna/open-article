@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^1.6.7",
     "base64url": "^3.0.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
@@ -23,7 +24,7 @@
     "start": "node ./bin/www",
     "test": "jest --coverage --verbose",
     "test-watch": "jest --coverage --verbose --detectOpenHandles --watch",
-    "watch": "nodemon -i '*.json' ./bin/www"
+    "watch": "nodemon -i ./bin/www"
   },
   "author": "Ahmet Zorlutuna <ahmettayyip3439@gmail.com>",
   "license": "ISC",
