@@ -29,7 +29,6 @@ const submitForm = async () => {
 
     authService.setLocalStorage(response);
 
-    console.log(response);
   } catch (error) {
     // Handle errors here
     console.error("Error:", error);
