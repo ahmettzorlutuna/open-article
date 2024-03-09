@@ -3,43 +3,55 @@ const router = express.Router();
 const utils = require("../auth/utils");
 const User = require("../models/user");
 const passport = require("passport");
-const mongoose = require("mongoose");
-const { userService } = require("../services");
 
-router.get("/protected", passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    res.status(200).json({success: true, msg: "You are authorized !"})
+router.get(
+  "/protected",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    res.status(200).json({ success: true, msg: "You are authorized !" });
+  }
+);
+
+router.post("/login", async (req, res, next) => {
+  User.findOne({ username: req.body.username })
+    .then((user) => {
+      if (!user)
+        res
+          .status(401)
+          .json({ success: false, msg: "Could not find the user!" });
+
+      const isValid = utils.validatePassword(
+        req.body.password,
+        user.hash,
+        user.salt
+      );
+      if (isValid) {
+        //We are not issued the jwt with user yet.
+        const tokenObject = utils.issueJWT(user);
+
+        res.setHeader("Authorization", tokenObject.token);
+
+        res
+          .status(200)
+          .json({
+            success: true,
+            token: tokenObject.token,
+            expiresIn: tokenObject.expiresIn,
+          });
+      } else {
+        res
+          .status(401)
+          .json({ success: false, msg: "You entered the wrong password" });
+      }
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
-router.post("/login", (req, res, next) => {
-  User.findOne({ username: req.body.username }).then((user) => {
-    if (!user)
-      res.status(401).json({ success: false, msg: "Could not find the user!" });
+router.get("/register", (req, res, next) => {});
 
-    const isValid = utils.validatePassword(
-      req.body.password,
-      user.hash,
-      user.salt
-    );
-
-    if (isValid) {
-      //We are not issued the jwt with user yet.
-      const tokenObject = utils.issueJWT(user);
-
-      res.status(200).json({ success: true, user: user, token: tokenObject });
-    } else {
-      res
-        .status(401)
-        .json({ success: false, msg: "You entered the wrong password" });
-    }
-  })
-  .catch((err) => {
-    next(err)
-  });
-});
-
-router.get("/register", (req, re, next) => {});
-
-router.post("/register", (req, res, next) => {
+router.post("/register", async (req, res, next) => {
   const saltHash = utils.genPassword(req.body.password);
 
   const hash = saltHash.hash;
@@ -49,21 +61,19 @@ router.post("/register", (req, res, next) => {
     username: req.body.username,
     password: hash + salt,
     hash: hash,
-    salt: salt,
+    salt: salt
   });
 
-  newUser
-    .save()
-    .then((user) => {
-      const jwt = utils.issueJWT(user);
+  const tokenObject = utils.issueJWT(newUser);
 
-      res.json({
-        success: true,
-        user: user,
-        token: jwt.token,
-        expiresIn: jwt.expires,
-      });
-    })
-    .catch((err) => next(err));
+  res.setHeader("Authorization", tokenObject.token);
+
+  try {
+    newUser.save().then((user) => {
+      res.json({ success: true, user: user, token: tokenObject.token, expiresIn: tokenObject.expires});
+    });
+  } catch (err) {
+    res.json({ success: false, msg: err });
+  }
 });
 module.exports = router;
