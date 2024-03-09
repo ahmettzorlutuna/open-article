@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { userService, postService, commentService } = require("../services");
 const passport = require("passport");
-
 //Users
-router.get("/", passport.authenticate('jwt', {session: false}),async (req, res) => {
+router.get("/",passport.authenticate("jwt", { session: false }),async (req, res) => {
   const users = await userService.load();
   res.send(users);
   // res.render("users", { users });
@@ -55,7 +54,6 @@ router.post("/comment/:userId", async (req, res) => {
     commentContent
   );
   // const result = userService.updatePostById(post._id, post)
-  console.log("ok");
   res.send(comment);
 });
 
