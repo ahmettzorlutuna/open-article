@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { userService, postService} = require("../services");
+const passport = require("passport");
 
 //New post
 router.post("/:userId", async (req, res) => {
