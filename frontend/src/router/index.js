@@ -1,50 +1,54 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import PostsView from '../views/PostsView.vue'
-import UserProfileView from '../views/UserProfileView.vue'
-import PopularView from '@/views/PopularView.vue'
-import PostDetailView from '../views/PostDetailView.vue'
-import LoginView from '../views/LoginView.vue'
-import RegisterView from '../views/RegisterView.vue'
-
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import PostsView from "../views/PostsView.vue";
+import UserProfileView from "../views/UserProfileView.vue";
+import PopularView from "@/views/PopularView.vue";
+import PostDetailView from "../views/PostDetailView.vue";
+import LoginView from "../views/LoginView.vue";
+import RegisterView from "../views/RegisterView.vue";
+import ProtectedRoute from "../views/ProtectedView.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   {
-    path: '/users',
-    name: 'users',
-    component: PostsView
+    path: "/users",
+    name: "users",
+    component: PostsView,
   },
   {
-    path: '/users/profile/:userId',
-    name: 'user',
-    component: UserProfileView
+    path: "/users/profile/:userId",
+    name: "user",
+    component: UserProfileView,
   },
   {
-    path: '/popular',
-    name: 'popular',
-    component: PopularView
+    path: "/popular",
+    name: "popular",
+    component: PopularView,
   },
   {
-    path: '/posts/:postId',
-    name: 'posts',
-    component: PostDetailView
+    path: "/posts/:postId",
+    name: "posts",
+    component: PostDetailView,
   },
   {
-    path: '/user/login/',
-    name: 'userLogin',
-    component: LoginView
+    path: "/user/login/",
+    name: "userLogin",
+    component: LoginView,
   },
   {
-    path: '/user/register/',
-    name: 'userRegister',
-    component: RegisterView
+    path: "/user/register/",
+    name: "userRegister",
+    component: RegisterView,
+  },
+  {
+    path: "/user/protected/",
+    name: "protected",
+    component: ProtectedRoute,
   }
-
 
   // {
   //   path: '/about',
@@ -54,11 +58,11 @@ const routes = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   // }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
