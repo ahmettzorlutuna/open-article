@@ -1,24 +1,28 @@
 const moment = require("moment");
 
 module.exports.setLocalStorage = (responseObj) => {
-  const expires = moment().add(responseObj.data.token.expires);
-  console.log("responseObj",responseObj.data.token);
-  localStorage.setItem("token", responseObj.data.token.token);
-  localStorage.setItem("expires", JSON.stringify(expires.valueOf()));
+  const expiresAt = moment().add(
+    Number.parseInt(responseObj.data.expiresIn),
+    "days"
+  );
+
+  localStorage.setItem("jwt", responseObj.data.token);
+  localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+
 };
 
 module.exports.logout = () => {
-  localStorage.removeItem("token");
-  localStorage.setItem("expires");
+  localStorage.removeItem("jwt");
+  localStorage.removeItem("expires_at");
 };
 
 module.exports.isLoggedIn = () => {
   return moment().isBefore(getExpiration());
 };
 
-module.exports.isLoggedOut= () => {
+module.exports.isLoggedOut = () => {
   !isLoggedIn();
-}
+};
 
 module.exports.getExpiration = () => {
   const expiration = localStorage.getItem("expires");
