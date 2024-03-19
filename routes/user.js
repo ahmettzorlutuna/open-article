@@ -4,13 +4,9 @@ const utils = require("../auth/utils");
 const User = require("../models/user");
 const passport = require("passport");
 
-router.get(
-  "/protected",
-  passport.authenticate("jwt", { session: false }),
-  (req, res, next) => {
-    res.status(200).json({ success: true, msg: "You are authorized !" });
-  }
-);
+router.get("/protected",passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  res.json({ success: true, msg: "Girdin" });
+});
 
 router.post("/login", async (req, res, next) => {
   User.findOne({ username: req.body.username })
@@ -29,15 +25,11 @@ router.post("/login", async (req, res, next) => {
         //We are not issued the jwt with user yet.
         const tokenObject = utils.issueJWT(user);
 
-        res.setHeader("Authorization", tokenObject.token);
-
-        res
-          .status(200)
-          .json({
-            success: true,
-            token: tokenObject.token,
-            expiresIn: tokenObject.expiresIn,
-          });
+        res.status(200).json({
+          success: true,
+          token: tokenObject.token,
+          expiresIn: tokenObject.expiresIn,
+        });
       } else {
         res
           .status(401)
@@ -61,16 +53,12 @@ router.post("/register", async (req, res, next) => {
     username: req.body.username,
     password: hash + salt,
     hash: hash,
-    salt: salt
+    salt: salt,
   });
-
-  const tokenObject = utils.issueJWT(newUser);
-
-  res.setHeader("Authorization", tokenObject.token);
 
   try {
     newUser.save().then((user) => {
-      res.json({ success: true, user: user, token: tokenObject.token, expiresIn: tokenObject.expires});
+      res.json({ success: true, user: user });
     });
   } catch (err) {
     res.json({ success: false, msg: err });
