@@ -19,9 +19,9 @@
   },
   "name": "open-article",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node -i ./bin/www",
     "test": "jest --coverage --verbose",
     "test-watch": "jest --coverage --verbose --detectOpenHandles --watch",
     "watch": "nodemon -i ./bin/www"
