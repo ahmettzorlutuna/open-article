@@ -27,7 +27,6 @@ const submitForm = async () => {
 
     const response = await axios.post("http://localhost:3000/user/login", reqObject);
 
-    authService.setLocalStorage(response);
   } catch (error) {
     // Handle errors here
     console.error("Error:", error);
